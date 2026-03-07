@@ -148,7 +148,8 @@ export function useFounderMedia() {
       if (error) throw error;
       return data || [];
     },
-    staleTime: 1000 * 60 * 2,
+    staleTime: 1000 * 30,
+    refetchOnWindowFocus: true,
   });
 }
 
