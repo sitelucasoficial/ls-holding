@@ -1,6 +1,7 @@
-import { ExternalLink, Quote, Play } from "lucide-react";
+import { ExternalLink, Play } from "lucide-react";
+import { useFounder } from "@/hooks/useCmsData";
 
-const mediaLogos = [
+const defaultMediaLogos = [
   { name: "Forbes", src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAZGXiXkB5HtMFKHePF2CB4gUebGnPKcEYY1jnxSYn2KOqLmAumptZS5jf5rQCP50Wa2BQ0wMOxrmBWkZLwvVLi-ykIKcFyRihp_1nag-bZuhDx28WUL-5Q_rwfQyaUakVdSB8zWBuKg2LKkCnqW9BiMP93pX9TCavdP969LcvWixvg4Y3taRqeUMYBCppaJBGvGpiP8K29J4F9Qm9z0mJUQFYMcsbodcsQGxw74tR7IjRhpJ9McSTVPF5G4foKI5Qtfn0yjb07yxU" },
   { name: "Fortune", src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCKrfMt6keLqy6I9uaMMJsBsZySxcgwC3Empwb8qyMi9YbQlpxgXfzR4azBUktV3lxlH1rq1hZAp0rwjC-vpc5DadGkIXXRd4cX0CsA0gzKl6CyjlfqlVrDqEIkSy25gMosLSBjrkgum-VDt3O1i67lOJ_w6WbX3-Cups4G1NvddNNiPpd43bKHjoojr_UDCd35rvfB0QPU5DiY3rFQoWGVYqiJdZ1KoF--C0IxJcWa60TU8xiAteAHKbWntbKwQwivaGpgd94uQtY" },
   { name: "Inc", src: "https://lh3.googleusercontent.com/aida-public/AB6AXuC2RSv2-Cuvag4BPyJ0cN2gqJbNGRfXw27QBIE9mgW7lusUFVFv9XzZk1nCxvYmgEk_sWyRLJWMq4tYwgUm8xJWu-4fl9wbB6SvkY4JqRKYEnW731VRaEoMTVgKq6ojUq9enw7GlMnSGahJF1kBq7CYEknS6xifU2k8Uy6HJB352J3dFbJZpRzYo6A0_tuU385T1m_w6IgE-vHZv5MZOiUWadngGNA9UzZMgit3NFRaxHhQMKO_2xkBoPGn7CsmEXP0KOBcd1Bn_7g" },
@@ -11,7 +12,25 @@ const mediaLogos = [
   { name: "Record", src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCCdisPQohsueTM7wV8dxnCWDb8zYto7P8bQDypZI31CAlRviYAUR6z4vUDDkubPUqINFUFzpjA4uLVrxqPCgNBXe_hn49dwJaqqka2pynvvEQXd0nq5My_p5dVWvCrd4-5PrsuFJX2EIgFiYGV_MYUp_lZU0KVEd993eA7g9rPz1LQhJLJ2o7qfm5dPB39_VNqvKfC3WdoDNaH41NVTvCbMC3S4c7NNX9zhrPzNDUAzo1Oz1fgnYqYeJfOSXw-aKMN2sT5OAkLim0" },
 ];
 
+const defaultBio = "Fundador do Grupo LS, empreendedor serial e investidor focado em transformar o ecossistema de negócios através de liderança e inovação. Criador do Empreende Brazil — a maior imersão em empreendedorismo da América Latina — e mentor com programa de 90 dias para empresários.\n\nJá foi destaque em veículos como Forbes, Exame, SBT News, NSC Total e ND Mais. Suas imersões unem estratégia, networking e vivências práticas de transformação empreendedora.";
+const defaultPhoto = "https://lh3.googleusercontent.com/aida-public/AB6AXuDya_C15af_g1ddWLNngXlro3JXKlO1ZUtoK6JMYq5KiCnaRPY8pGWkkMfusMSrpCJ3WqhfhqCEyNLjl863i5Tcy4ShBK18V1Oa5ngIcTgAvk96ljGhBk73ceVfTV6xEuvrmNuWJ5V4fUQXs9qreQQO_Vgw6Vpm_urDgGhyljsHTpyqHFHBW0K6aM2sHk7X7o7njfv7m0wAsCR7bhG4Hy7L8LjHjhJ__MPzDiMGfb4kEXuU4GjRwmzRSUJv2bSAjbnU_vzW4sIh19c";
+const defaultVideoThumb = "https://lh3.googleusercontent.com/aida-public/AB6AXuBRzCiKM2E1nUEVwP74KxD6CuiFkgMDYKGR7CJCTlBQIImEChHeE5PeV0O6397w-7IEFD7bUja00jOLL663GRT2k8ASddublMs_TNg6SqNTujsuYY01hNaZUudRQJ64W2FhVG04v1Hi_zezYYAOgxVgYEoszG7RDqQ7YSoaI7Kd7XGfJREDYBoXUt-p_Xji8ldR-XIrwK87O2gwYUZ-CJr86esmviGg-4yc0uE_ppOQ05PJvp7fvTZPwrGX-s299_eDsaA195MV2pE";
+
 const FounderSection = () => {
+  const { data: founder } = useFounder();
+
+  const name = founder?.name || "Lucas Schweitzer";
+  const photo = founder?.photo_url || defaultPhoto;
+  const bio = founder?.bio || defaultBio;
+  const mediaLogos = (founder?.media_logos as any[]) || defaultMediaLogos;
+  const docLabel = founder?.doc_label || "DOCUMENTÁRIO LS";
+  const docUrl = founder?.doc_url || "";
+  const siteLabel = founder?.site_label || "SITE LUCAS SCHWEITZER";
+  const siteUrl = founder?.site_url || "https://lucaschweitzer.com.br/";
+  const videoThumb = founder?.video_thumbnail_url || defaultVideoThumb;
+  const videoUrl = founder?.video_url || "";
+  const videoLabel = founder?.video_label || "VÍDEO CNBC";
+
   return (
     <section className="py-24 bg-[hsl(30,10%,7%)]/50">
       <div className="container mx-auto px-6">
@@ -20,28 +39,17 @@ const FounderSection = () => {
         </h3>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* LEFT: Photo */}
           <div className="relative group">
             <div className="aspect-[3/4] rounded-xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
-              <img
-                alt="Lucas Schweitzer"
-                className="w-full h-full object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDya_C15af_g1ddWLNngXlro3JXKlO1ZUtoK6JMYq5KiCnaRPY8pGWkkMfusMSrpCJ3WqhfhqCEyNLjl863i5Tcy4ShBK18V1Oa5ngIcTgAvk96ljGhBk73ceVfTV6xEuvrmNuWJ5V4fUQXs9qreQQO_Vgw6Vpm_urDgGhyljsHTpyqHFHBW0K6aM2sHk7X7o7njfv7m0wAsCR7bhG4Hy7L8LjHjhJ__MPzDiMGfb4kEXuU4GjRwmzRSUJv2bSAjbnU_vzW4sIh19c"
-              />
+              <img alt={name} className="w-full h-full object-cover" src={photo} loading="lazy" />
             </div>
           </div>
 
-          {/* CENTER: Bio & Logos */}
           <div className="flex flex-col justify-between">
             <div>
-              <h4 className="text-3xl font-bold text-gold mb-6">Lucas Schweitzer</h4>
+              <h4 className="text-3xl font-bold text-gold mb-6">{name}</h4>
               <div className="space-y-4 text-slate-300 leading-relaxed">
-                <p>
-                  Fundador do Grupo LS, empreendedor serial e investidor focado em transformar o ecossistema de negócios através de liderança e inovação. Criador do Empreende Brazil — a maior imersão em empreendedorismo da América Latina — e mentor com programa de 90 dias para empresários.
-                </p>
-                <p>
-                  Já foi destaque em veículos como Forbes, Exame, SBT News, NSC Total e ND Mais. Suas imersões unem estratégia, networking e vivências práticas de transformação empreendedora.
-                </p>
+                {bio.split("\n").filter(Boolean).map((p, i) => <p key={i}>{p}</p>)}
               </div>
             </div>
             <div className="mt-12">
@@ -49,47 +57,37 @@ const FounderSection = () => {
                 Mídia & Reconhecimento
               </p>
               <div className="grid grid-cols-4 gap-4 opacity-40 grayscale contrast-125">
-                {mediaLogos.map((logo) => (
-                  <img key={logo.name} alt={logo.name} src={logo.src} className="w-full h-auto" />
+                {mediaLogos.map((logo: any) => (
+                  <img key={logo.name} alt={logo.name} src={logo.src} className="w-full h-auto" loading="lazy" />
                 ))}
               </div>
             </div>
           </div>
 
-          {/* RIGHT: Cards & Video */}
           <div className="flex flex-col gap-6">
-            <div className="bg-white/5 border border-white/10 p-6 rounded-xl hover:bg-white/10 transition-colors group cursor-pointer">
+            <a href={docUrl || "#"} target="_blank" rel="noopener noreferrer" className="bg-white/5 border border-white/10 p-6 rounded-xl hover:bg-white/10 transition-colors group block">
               <div className="flex justify-between items-center">
-                <h5 className="font-bold text-white tracking-tight">DOCUMENTÁRIO LS</h5>
-                <ExternalLink className="w-5 h-5 text-gold group-hover:translate-x-1 transition-transform" />
-              </div>
-            </div>
-
-            <a
-              href="https://lucaschweitzer.com.br/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white/5 border border-white/10 p-6 rounded-xl hover:bg-white/10 transition-colors group block"
-            >
-              <div className="flex justify-between items-center">
-                <h5 className="font-bold text-white tracking-tight">SITE LUCAS SCHWEITZER</h5>
+                <h5 className="font-bold text-white tracking-tight">{docLabel}</h5>
                 <ExternalLink className="w-5 h-5 text-gold group-hover:translate-x-1 transition-transform" />
               </div>
             </a>
 
-            <div className="relative mt-auto aspect-video rounded-xl overflow-hidden group cursor-pointer">
-              <img
-                alt="Business building"
-                className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRzCiKM2E1nUEVwP74KxD6CuiFkgMDYKGR7CJCTlBQIImEChHeE5PeV0O6397w-7IEFD7bUja00jOLL663GRT2k8ASddublMs_TNg6SqNTujsuYY01hNaZUudRQJ64W2FhVG04v1Hi_zezYYAOgxVgYEoszG7RDqQ7YSoaI7Kd7XGfJREDYBoXUt-p_Xji8ldR-XIrwK87O2gwYUZ-CJr86esmviGg-4yc0uE_ppOQ05PJvp7fvTZPwrGX-s299_eDsaA195MV2pE"
-              />
+            <a href={siteUrl} target="_blank" rel="noopener noreferrer" className="bg-white/5 border border-white/10 p-6 rounded-xl hover:bg-white/10 transition-colors group block">
+              <div className="flex justify-between items-center">
+                <h5 className="font-bold text-white tracking-tight">{siteLabel}</h5>
+                <ExternalLink className="w-5 h-5 text-gold group-hover:translate-x-1 transition-transform" />
+              </div>
+            </a>
+
+            <a href={videoUrl || "#"} target="_blank" rel="noopener noreferrer" className="relative mt-auto aspect-video rounded-xl overflow-hidden group cursor-pointer block">
+              <img alt="Video thumbnail" className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" src={videoThumb} loading="lazy" />
               <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40">
                 <div className="w-12 h-12 bg-gold rounded-full flex items-center justify-center text-black mb-2">
                   <Play className="w-5 h-5" />
                 </div>
-                <span className="text-[10px] font-bold text-white tracking-[0.2em]">VÍDEO CNBC</span>
+                <span className="text-[10px] font-bold text-white tracking-[0.2em]">{videoLabel}</span>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>

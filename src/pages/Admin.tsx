@@ -13,7 +13,7 @@ const sections = [
   { id: "hero", label: "Hero", icon: FileText },
   { id: "founder", label: "Fundador", icon: Users },
   { id: "companies", label: "Empresas", icon: Building2 },
-  { id: "footer", label: Footer", icon: Settings },
+  { id: "footer", label: "Footer", icon: Settings },
 ];
 
 const Admin = () => {
