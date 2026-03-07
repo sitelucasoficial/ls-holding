@@ -83,3 +83,8 @@
     background-color: hsl(42 50% 54%);
   }
 }
+
+
+#lovable-badge {
+  display: none !important;
+}
