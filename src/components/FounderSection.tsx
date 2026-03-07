@@ -1,5 +1,5 @@
 import { ExternalLink, Play } from "lucide-react";
-import { useFounder } from "@/hooks/useCmsData";
+import { useFounder, useFounderMedia } from "@/hooks/useCmsData";
 
 const defaultMediaLogos = [
   { name: "Forbes", src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAZGXiXkB5HtMFKHePF2CB4gUebGnPKcEYY1jnxSYn2KOqLmAumptZS5jf5rQCP50Wa2BQ0wMOxrmBWkZLwvVLi-ykIKcFyRihp_1nag-bZuhDx28WUL-5Q_rwfQyaUakVdSB8zWBuKg2LKkCnqW9BiMP93pX9TCavdP969LcvWixvg4Y3taRqeUMYBCppaJBGvGpiP8K29J4F9Qm9z0mJUQFYMcsbodcsQGxw74tR7IjRhpJ9McSTVPF5G4foKI5Qtfn0yjb07yxU" },
@@ -18,11 +18,13 @@ const defaultVideoThumb = "https://lh3.googleusercontent.com/aida-public/AB6AXuB
 
 const FounderSection = () => {
   const { data: founder } = useFounder();
+  const { data: founderMedia } = useFounderMedia();
 
   const name = founder?.name || "Lucas Schweitzer";
   const photo = founder?.photo_url || defaultPhoto;
   const bio = founder?.bio || defaultBio;
-  const mediaLogos = (founder?.media_logos as any[]) || defaultMediaLogos;
+  const hasDbMedia = founderMedia && founderMedia.length > 0;
+  const mediaLogos = hasDbMedia ? founderMedia : (founder?.media_logos as any[]) || defaultMediaLogos;
   const docLabel = founder?.doc_label || "DOCUMENTÁRIO LS";
   const docUrl = founder?.doc_url || "";
   const siteLabel = founder?.site_label || "SITE LUCAS SCHWEITZER";
@@ -57,9 +59,18 @@ const FounderSection = () => {
                 Mídia & Reconhecimento
               </p>
               <div className="grid grid-cols-4 gap-4 opacity-40 grayscale contrast-125">
-                {mediaLogos.map((logo: any) => (
-                  <img key={logo.name} alt={logo.name} src={logo.src} className="w-full h-auto" loading="lazy" />
-                ))}
+                {mediaLogos.map((logo: any) => {
+                  const imgSrc = logo.image_url || logo.src;
+                  const imgAlt = logo.label || logo.name;
+                  const link = logo.external_link;
+                  const Wrapper = link ? 'a' : 'div';
+                  const wrapperProps = link ? { href: link, target: "_blank", rel: "noopener noreferrer" } : {};
+                  return (
+                    <Wrapper key={logo.id || imgAlt} {...wrapperProps as any} className="hover:opacity-80 transition-opacity">
+                      <img alt={imgAlt} src={imgSrc} className="w-full h-auto" loading="lazy" />
+                    </Wrapper>
+                  );
+                })}
               </div>
             </div>
           </div>
