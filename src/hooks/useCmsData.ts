@@ -120,7 +120,8 @@ export function useFooter() {
       if (error) throw error;
       return data;
     },
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 30,
+    refetchOnWindowFocus: true,
   });
 }
 
