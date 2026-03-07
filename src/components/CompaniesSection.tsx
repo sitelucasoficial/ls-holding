@@ -1,92 +1,94 @@
+import { Play } from "lucide-react";
+
 const companies = [
   {
-    name: "Empreende Brazil",
-    labelColor: "bg-emerald-600",
+    name: "EMPREENDE BRAZIL",
+    label: "ECOSSISTEMA",
+    labelColor: "bg-green-600",
     url: "https://empreendebrazil.com.br/",
     description:
-      "O maior ecossistema do empreendedor brasileiro. Reúne conferências, clube de membros, mentorias e uma comunidade com mais de 5 milhões de pessoas impactadas. Criador da maior imersão em empreendedorismo da América Latina.",
+      "O maior evento de imersão em empreendedorismo da América Latina. Um ecossistema completo para networking e aprendizado de alto nível.",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuDi_hPVNLBU3uDS3CN8IzqUyjPajss7Fr5lhsSbxqSYFLKJmCixsm5L4v3SSoI3AHKfWQf_ChGLFT4hmO9SWD4pej8jbjKgkVSwVg2zNkL_DBN6D4pKw85Wyf2RsI_cLNoSmIpPQMPt0hsPAB2EuGP4ZDKjwoDL1DJKCNoavHaJ14fVTJNLxrRfW_6FZlZK3aqRKCSVAznjHSNZHoP2A3HqT9D73Q2CkqkKVuEj11CTBXdg-b_y37XLHA3RzRHXGvFiyYiQfLnAG_M",
   },
   {
-    name: "Empreende Brazil Club",
-    labelColor: "bg-green-500",
+    name: "EMPREENDE BRAZIL CLUB",
+    label: "COMUNIDADE",
+    labelColor: "bg-green-600",
     url: "https://empreendebrazil.com.br/ebclub/",
     description:
-      "Sua chave de acesso ao próximo nível. Uma agenda anual de alta frequência com eventos exclusivos, networking e conteúdo para acelerar o crescimento do empreendedor.",
+      "Clube exclusivo de mentoria e networking para empresários que buscam escala e conexões de alto valor durante todo o ano.",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuD_bVkqGkoqUxFN3q2wyYhWx5G5xofYHVaqVK1wjt2P2etaFhIIJf9Sp6OkilTDE7YsfTr8sPgi_XOUYS3ttDY5716KuWi4jCRlWh-MIhNSOVg3CpLSgSjD44ar_C659GlxSlgdvQeemD6kcuc7e54vW_LFAv12_NDKPPudkGuPfiBIGhz2YA34ClXE3jpuM5BKZUwvDVSKs6n4mhFPc42zNWqt-_zPsS9903AHltnBgW7055FOlrXn1aFuwpyKlscc0h1YcBEIjeo",
   },
   {
-    name: "LUSCH Garden",
-    labelColor: "bg-teal-500",
+    name: "LUSCH GARDEN",
+    label: "EXPERIÊNCIA",
+    labelColor: "bg-emerald-700",
     url: "https://luschgarden.com.br/",
     description:
-      "Espaço de eventos único, frente ao mar, em Florianópolis. São 5.000m² de área arborizada com ambientes exclusivos para casamentos, eventos corporativos, confraternizações e mais.",
+      "Espaço conceito voltado para eventos de alto padrão, combinando sofisticação arquitetônica e tecnologia de ponta.",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCM8rFAKRfX7ghqCjxNOeATO3wDNzYtr6hV7xFTTZr2QB7P5dNxP6ryvjgmhzN30c2fb7fhJsbRHTfbHOJWQTi-xsC-wnKYB5ZyCDWq0tKbFEUjK27BYHX0-BMiwjlzWN0A6UFjtAgwI_7IPHR4uzb7RPsADEd1wSJjvDwlMg5FXafJ1v5LetEBvRnmvSd6igg_oE42M_kEqQTXplQ5au9-k_Lht8n1SyZcT4jAD2F8TCeVSB63lu_rH1MeA7QRzBWLlqDT-6bi9RI",
   },
   {
-    name: "LUSCH Agência",
-    labelColor: "bg-blue-800",
+    name: "LUSCH AGÊNCIA",
+    label: "MARKETING",
+    labelColor: "bg-blue-900",
     url: "https://luschagencia.com.br/",
     description:
-      "Agência criadora do Empreende Brazil e vencedora do Prêmio Caio 2022. Especialistas em eventos 360°, live marketing, brand experience, convenções e muito mais. Mais de 5 milhões de pessoas já impactadas.",
-  },
-  {
-    name: "LUSCH Incorp",
-    labelColor: "bg-gray-600",
-    url: "#",
-    description:
-      "Em breve. Novo braço do Grupo LS voltado para incorporação e desenvolvimento imobiliário.",
+      "Agência boutique especializada em branding, posicionamento digital e lançamento de infoprodutos de alta performance.",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCQQl0Z3easX_bc309BDX1e_ZIeydMIzZHHSmxdS-AmPkL9ArnwJzdKs3nuAJBSAKi3EZy9i1wDFBqAJNZSV5usiwdMycRyMqewENRNAhcHVLR80d7YhsncrhpJS86CcCv9NzcMIMwTPJaqPpsnHY-h1Jwrxtql91RbnpJwWecnIiS8Yp1rFAgU55XqD7Uy1s6MRa8vn5i3itvwibxWybHjftCmBAFRe4Sv0PjjySYX7bNgdC9DOpKGP6KvOyAsv4p0Z8-wPYO7uD8",
   },
 ];
 
 const CompaniesSection = () => {
   return (
-    <section id="empresas" className="py-20 bg-card">
-      <div className="container mx-auto px-6 lg:px-16">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-red-accent uppercase mb-12 tracking-wide">
-          Conheça Nossas Empresas
-        </h2>
+    <section id="empresas" className="py-24">
+      <div className="container mx-auto px-6">
+        <h3 className="text-gold font-bold tracking-widest text-sm mb-16 uppercase">
+          Conheça nossas empresas
+        </h3>
 
-        <div className="space-y-8">
+        <div className="space-y-12">
           {companies.map((company) => (
             <div
               key={company.name}
-              className="grid md:grid-cols-2 border border-border rounded-sm overflow-hidden hover:border-gold/30 transition-colors"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-white/5 rounded-2xl overflow-hidden border border-white/5 group"
             >
-              {/* Video placeholder */}
-              <div className="relative aspect-video md:aspect-auto bg-secondary flex items-center justify-center min-h-[240px]">
-                <div className="absolute inset-0 bg-gradient-to-br from-muted/50 to-secondary" />
-                <div className="relative text-center">
-                  <div className="text-4xl text-muted-foreground mb-3">▶</div>
-                  <p className="text-xs text-muted-foreground uppercase tracking-widest mb-2">
-                    Vídeo de fundo
-                  </p>
+              {/* Image / Video placeholder */}
+              <div className="relative aspect-video lg:aspect-auto h-full min-h-[300px]">
+                <div
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{ backgroundImage: `url('${company.image}')` }}
+                />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                  <div className="w-16 h-16 border-2 border-white/30 rounded-full flex items-center justify-center text-white backdrop-blur-sm group-hover:scale-110 transition-transform">
+                    <Play className="w-8 h-8" />
+                  </div>
                 </div>
-                <span
-                  className={`absolute bottom-4 left-4 ${company.labelColor} text-foreground text-sm font-bold px-4 py-1.5 rounded-sm uppercase tracking-wider`}
+                <div
+                  className={`absolute top-6 left-6 ${company.labelColor} text-[10px] font-bold px-3 py-1 rounded text-white tracking-widest`}
                 >
-                  {company.name}
-                </span>
+                  {company.label}
+                </div>
               </div>
 
               {/* Info */}
-              <div className="p-8 flex flex-col justify-center bg-background">
-                {/* Logo placeholder */}
-                <div className="w-40 h-10 bg-secondary rounded-sm flex items-center justify-center mb-4 border border-border">
-                  <span className="text-xs text-muted-foreground uppercase tracking-widest">
-                    Logo
-                  </span>
-                </div>
-                <p className="text-muted-foreground leading-relaxed mb-6">
+              <div className="p-10 lg:p-16">
+                <h4 className="text-3xl font-black text-white mb-6">{company.name}</h4>
+                <p className="text-slate-400 mb-10 leading-relaxed max-w-md">
                   {company.description}
                 </p>
-                <div>
-                  <a
-                    href={company.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block px-6 py-2.5 border border-gold text-gold font-semibold text-sm uppercase tracking-wider rounded-sm hover:bg-gold hover:text-primary-foreground transition-colors"
-                  >
-                    Veja Mais
-                  </a>
-                </div>
+                <a
+                  href={company.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border border-gold text-gold font-bold px-8 py-3 rounded-lg hover:bg-gold hover:text-black transition-all inline-block"
+                >
+                  VEJA MAIS
+                </a>
               </div>
             </div>
           ))}
