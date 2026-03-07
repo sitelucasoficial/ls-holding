@@ -41,15 +41,6 @@ const companies = [
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuCQQl0Z3easX_bc309BDX1e_ZIeydMIzZHHSmxdS-AmPkL9ArnwJzdKs3nuAJBSAKi3EZy9i1wDFBqAJNZSV5usiwdMycRyMqewENRNAhcHVLR80d7YhsncrhpJS86CcCv9NzcMIMwTPJaqPpsnHY-h1Jwrxtql91RbnpJwWecnIiS8Yp1rFAgU55XqD7Uy1s6MRa8vn5i3itvwibxWybHjftCmBAFRe4Sv0PjjySYX7bNgdC9DOpKGP6KvOyAsv4p0Z8-wPYO7uD8",
   },
-  {
-    name: "LUSCH INCORP",
-    label: "EM BREVE",
-    labelColor: "bg-gray-600",
-    url: "#",
-    description:
-      "Em breve. Novo braço do Grupo LS voltado para incorporação e desenvolvimento imobiliário.",
-    image: "",
-  },
 ];
 
 const CompaniesSection = () => {
