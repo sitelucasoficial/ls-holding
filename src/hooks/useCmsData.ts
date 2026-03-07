@@ -12,7 +12,8 @@ export function useSiteConfig() {
       data?.forEach((row: any) => { map[row.key] = row.value; });
       return map;
     },
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 30,
+    refetchOnWindowFocus: true,
   });
 }
 
