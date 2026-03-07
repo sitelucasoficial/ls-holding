@@ -18,11 +18,13 @@ const defaultVideoThumb = "https://lh3.googleusercontent.com/aida-public/AB6AXuB
 
 const FounderSection = () => {
   const { data: founder } = useFounder();
+  const { data: founderMedia } = useFounderMedia();
 
   const name = founder?.name || "Lucas Schweitzer";
   const photo = founder?.photo_url || defaultPhoto;
   const bio = founder?.bio || defaultBio;
-  const mediaLogos = (founder?.media_logos as any[]) || defaultMediaLogos;
+  const hasDbMedia = founderMedia && founderMedia.length > 0;
+  const mediaLogos = hasDbMedia ? founderMedia : (founder?.media_logos as any[]) || defaultMediaLogos;
   const docLabel = founder?.doc_label || "DOCUMENTÁRIO LS";
   const docUrl = founder?.doc_url || "";
   const siteLabel = founder?.site_label || "SITE LUCAS SCHWEITZER";
