@@ -29,9 +29,6 @@ const FounderSection = () => {
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDya_C15af_g1ddWLNngXlro3JXKlO1ZUtoK6JMYq5KiCnaRPY8pGWkkMfusMSrpCJ3WqhfhqCEyNLjl863i5Tcy4ShBK18V1Oa5ngIcTgAvk96ljGhBk73ceVfTV6xEuvrmNuWJ5V4fUQXs9qreQQO_Vgw6Vpm_urDgGhyljsHTpyqHFHBW0K6aM2sHk7X7o7njfv7m0wAsCR7bhG4Hy7L8LjHjhJ__MPzDiMGfb4kEXuU4GjRwmzRSUJv2bSAjbnU_vzW4sIh19c"
               />
             </div>
-            <div className="absolute -bottom-4 -right-4 bg-gold p-4 rounded-lg">
-              <Quote className="w-7 h-7 text-black" />
-            </div>
           </div>
 
           {/* CENTER: Bio & Logos */}
