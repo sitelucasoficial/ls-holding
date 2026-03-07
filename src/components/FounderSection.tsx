@@ -40,10 +40,10 @@ const FounderSection = () => {
               <h4 className="text-3xl font-bold text-gold mb-6">Lucas Schweitzer</h4>
               <div className="space-y-4 text-slate-300 leading-relaxed">
                 <p>
-                  Fundador da LS Holdings, empreendedor e investidor focado em transformar o ecossistema de negócios através de liderança e inovação.
+                  Fundador do Grupo LS, empreendedor serial e investidor focado em transformar o ecossistema de negócios através de liderança e inovação. Criador do Empreende Brazil — a maior imersão em empreendedorismo da América Latina — e mentor com programa de 90 dias para empresários.
                 </p>
                 <p>
-                  Especialista em expansão de negócios e gestão estratégica com foco em resultados exponenciais.
+                  Já foi destaque em veículos como Forbes, Exame, SBT News, NSC Total e ND Mais. Suas imersões unem estratégia, networking e vivências práticas de transformação empreendedora.
                 </p>
               </div>
             </div>
