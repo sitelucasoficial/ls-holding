@@ -45,7 +45,7 @@ const companies = [
 
 const CompaniesSection = () => {
   return (
-    <section id="empresas" className="py-24">
+    <section id="empresas" className="py-24 bg-background">
       <div className="container mx-auto px-6">
         <h3 className="text-gold font-bold tracking-widest text-sm mb-16 uppercase">
           Conheça nossas empresas
