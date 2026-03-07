@@ -135,6 +135,52 @@ export function useUpdateFooter() {
   });
 }
 
+// ---- Founder Media ----
+export function useFounderMedia() {
+  return useQuery({
+    queryKey: ["founder_media"],
+    queryFn: async () => {
+      const { data, error } = await supabase.from("founder_media").select("*").order("display_order");
+      if (error) throw error;
+      return data || [];
+    },
+    staleTime: 1000 * 60 * 2,
+  });
+}
+
+export function useCreateFounderMedia() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (item: any) => {
+      const { error } = await supabase.from("founder_media").insert(item);
+      if (error) throw error;
+    },
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["founder_media"] }),
+  });
+}
+
+export function useUpdateFounderMedia() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async ({ id, ...updates }: any) => {
+      const { error } = await supabase.from("founder_media").update(updates).eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["founder_media"] }),
+  });
+}
+
+export function useDeleteFounderMedia() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const { error } = await supabase.from("founder_media").delete().eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["founder_media"] }),
+  });
+}
+
 // ---- Image Upload ----
 export async function uploadImage(file: File, path: string): Promise<string> {
   const ext = file.name.split('.').pop();
