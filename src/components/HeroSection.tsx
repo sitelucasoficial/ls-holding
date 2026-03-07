@@ -1,52 +1,47 @@
+import { ArrowRight, Diamond } from "lucide-react";
+
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background gradient placeholder for video */}
-      <div className="absolute inset-0 bg-gradient-to-br from-navy-deep via-navy to-secondary" />
-      <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-background/30" />
-
-      <div className="relative z-10 container mx-auto px-6 lg:px-16 py-20">
-        {/* Logo top right */}
-        <div className="absolute top-8 right-6 lg:right-16 text-right">
-          <h2 className="text-xl lg:text-2xl font-bold tracking-wider text-foreground">
-            LS <span className="text-gold">HOLDINGS</span>
-          </h2>
-          <p className="text-xs text-muted-foreground tracking-widest uppercase">
+    <>
+      {/* HEADER */}
+      <header className="w-full border-b border-white/10 bg-background py-8">
+        <div className="container mx-auto px-6 flex flex-col items-center">
+          <div className="flex items-center gap-3 mb-1">
+            <Diamond className="w-7 h-7 text-gold" />
+            <h1 className="text-3xl font-black tracking-tighter text-white">LS HOLDINGS</h1>
+          </div>
+          <p className="text-[10px] tracking-[0.3em] font-bold text-slate-400 uppercase">
             Participações & Investimentos
           </p>
         </div>
+      </header>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center mt-20 lg:mt-0">
-          <div>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-foreground">
-              Impactar, potencializar e{" "}
-              <span className="text-gold">transformar</span> a vida de pessoas
-              e empresas.
-            </h1>
-          </div>
-          <div className="lg:pl-8">
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              Somos a Holding responsável pela Gestão dos Grupos Empresariais da
-              LUSCH e Empreende Brazil.
-            </p>
-            <p className="mt-4 text-lg md:text-xl text-muted-foreground leading-relaxed">
-              Você está pronto para viver momentos inesquecíveis conosco?
-            </p>
-            <div className="mt-8">
+      {/* HERO SECTION */}
+      <section className="relative py-24 overflow-hidden">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7">
+              <h2 className="text-5xl lg:text-7xl font-black leading-[1.1] text-white">
+                Impactar, potencializar e{" "}
+                <span className="text-gold">transformar</span> a vida de pessoas e empresas.
+              </h2>
+            </div>
+            <div className="lg:col-span-5 flex flex-col items-start gap-8">
+              <p className="text-lg text-slate-400 leading-relaxed border-l-2 border-gold pl-6">
+                Estratégias sólidas para o crescimento de negócios exponenciais. Fomentando o empreendedorismo com propósito.
+              </p>
               <a
                 href="#empresas"
-                className="inline-block px-8 py-3 bg-gold text-primary-foreground font-semibold rounded-sm hover:bg-gold-light transition-colors tracking-wide"
+                className="bg-gold hover:bg-gold-light transition-colors text-black font-bold py-4 px-10 rounded-lg flex items-center gap-2 group"
               >
                 CONHEÇA NOSSAS EMPRESAS
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
-    </section>
+      </section>
+    </>
   );
 };
 
