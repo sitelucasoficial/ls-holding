@@ -38,7 +38,7 @@ const FooterSection = () => {
           </div>
 
           <div className="flex flex-col items-start">
-            <p className="text-slate-500 text-xs mb-4 uppercase font-bold">Faça parte do nosso time</p>
+            <h5 className="text-white font-bold mb-8 text-sm uppercase tracking-widest gold-underline">Faça parte do nosso time</h5>
             <a href={workUrl} target="_blank" rel="noopener noreferrer" className="bg-gold text-black font-bold py-3 px-8 rounded-lg hover:bg-white transition-colors w-full lg:w-auto text-center">
               {workLabel}
             </a>
