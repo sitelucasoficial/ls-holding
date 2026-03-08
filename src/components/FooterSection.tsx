@@ -19,7 +19,7 @@ const FooterSection = () => {
   return (
     <footer className="bg-[hsl(30,10%,7%)] pt-24 pb-12 border-t border-white/5">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-32 gap-y-12 mb-20 mx-auto w-fit">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[auto_auto_auto_auto] gap-x-20 gap-y-12 mb-20 mx-auto w-fit">
           <div>
             <h5 className="text-white font-bold mb-8 text-sm uppercase tracking-widest gold-underline">Contatos</h5>
             <ul className="space-y-4 text-slate-400">
@@ -38,7 +38,7 @@ const FooterSection = () => {
           </div>
 
           <div className="flex flex-col items-start">
-            <h5 className="text-white font-bold mb-8 text-sm uppercase tracking-widest gold-underline">Faça parte do nosso time</h5>
+            <h5 className="text-white font-bold mb-8 text-sm uppercase tracking-widest gold-underline whitespace-nowrap">Faça parte do nosso time</h5>
             <a href={workUrl} target="_blank" rel="noopener noreferrer" className="bg-gold text-black font-bold py-3 px-8 rounded-lg hover:bg-white transition-colors w-full lg:w-auto text-center">
               {workLabel}
             </a>
