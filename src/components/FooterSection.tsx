@@ -74,7 +74,7 @@ const FooterSection = () => {
               <a className="hover:text-white transition-colors" href="/privacidade">Privacidade</a>
             </div>
           </div>
-          <p className="text-slate-500 text-xs text-center">{copyright}</p>
+          <p className="text-slate-500 text-xs text-center w-full">{copyright}</p>
         </div>
       </div>
     </footer>
