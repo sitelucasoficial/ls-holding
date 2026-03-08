@@ -18,8 +18,8 @@ const FooterSection = () => {
 
   return (
     <footer className="bg-[hsl(30,10%,7%)] pt-10 md:pt-16 lg:pt-24 pb-8 md:pb-12 border-t border-white/5">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-8 md:gap-y-12 mb-12 md:mb-20 w-full items-center justify-items-center">
+      <div className="container mx-auto px-4 md:px-6 lg:px-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-8 md:gap-y-12 mb-12 md:mb-20 items-start">
           <div className="text-center md:text-left">
             <h5 className="text-white font-bold mb-6 md:mb-8 text-sm uppercase tracking-widest gold-underline inline-block md:block">Contatos</h5>
             <ul className="space-y-1 text-slate-400 leading-relaxed">
