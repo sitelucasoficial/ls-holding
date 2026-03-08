@@ -38,31 +38,33 @@ const FounderSection = () => {
   const videoLabel = founder?.video_label || "VÍDEO CNBC";
 
   return (
-    <section className="py-24 bg-[hsl(30,10%,7%)]/50">
-      <div className="container mx-auto px-6">
-        <h3 className="text-gold font-bold tracking-widest text-sm mb-12 uppercase">
+    <section className="py-10 md:py-16 lg:py-24 bg-[hsl(30,10%,7%)]/50">
+      <div className="container mx-auto px-4 md:px-6">
+        <h3 className="text-gold font-bold tracking-widest text-sm mb-8 md:mb-12 uppercase">
           Conheça nosso fundador
         </h3>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          <div className="relative group">
-            <div className="aspect-[3/4] rounded-xl overflow-hidden transition-all duration-500">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+          {/* Photo */}
+          <div className="relative group flex justify-center md:justify-start md:col-span-1">
+            <div className="aspect-[3/4] rounded-xl overflow-hidden transition-all duration-500 w-full max-w-[280px] md:max-w-none">
               <img alt={name} className="w-full h-full object-cover" src={bustCache(photo)} loading="lazy" onError={handleImgError} />
             </div>
           </div>
 
-          <div className="flex flex-col justify-between">
+          {/* Bio + Media */}
+          <div className="flex flex-col justify-between md:col-span-1">
             <div>
-              <h4 className="text-3xl font-bold text-gold mb-6">{name}</h4>
-              <div className="space-y-4 text-slate-300 leading-relaxed">
+              <h4 className="text-2xl md:text-3xl font-bold text-gold mb-4 md:mb-6">{name}</h4>
+              <div className="space-y-4 text-slate-300 leading-relaxed text-[15px] md:text-base">
                 {bio.split("\n").filter(Boolean).map((p, i) => <p key={i}>{p}</p>)}
               </div>
             </div>
-            <div className="mt-12">
+            <div className="mt-8 lg:mt-12">
               <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">
                 Mídia & Reconhecimento
               </p>
-              <div className="grid grid-cols-2 gap-x-2 gap-y-0 opacity-40 grayscale contrast-125 items-center">
+              <div className="grid grid-cols-4 md:grid-cols-2 gap-x-2 gap-y-0 opacity-40 grayscale contrast-125 items-center">
                 {mediaLogos.map((logo: any) => {
                   const imgSrc = logo.image_url || logo.src;
                   const imgAlt = logo.label || logo.name;
@@ -70,8 +72,8 @@ const FounderSection = () => {
                   const Wrapper = link ? 'a' : 'div';
                   const wrapperProps = link ? { href: link, target: "_blank", rel: "noopener noreferrer" } : {};
                   return (
-                    <Wrapper key={logo.id || imgAlt} {...wrapperProps as any} className="hover:opacity-80 transition-opacity py-1">
-                      <img alt={imgAlt} src={bustCache(imgSrc)} className="w-full object-contain" style={{ height: '80px' }} loading="lazy" onError={handleImgError} />
+                    <Wrapper key={logo.id || imgAlt} {...wrapperProps as any} className="hover:opacity-80 transition-opacity py-1 min-h-[44px] flex items-center">
+                      <img alt={imgAlt} src={bustCache(imgSrc)} className="w-full object-contain" style={{ height: '60px' }} loading="lazy" onError={handleImgError} />
                     </Wrapper>
                   );
                 })}
@@ -79,15 +81,16 @@ const FounderSection = () => {
             </div>
           </div>
 
-          <div className="flex flex-col gap-6">
-            <a href={docUrl || "#"} target="_blank" rel="noopener noreferrer" className="bg-white/5 border border-white/10 p-6 rounded-xl hover:bg-white/10 transition-colors group block">
+          {/* Banners + Video */}
+          <div className="flex flex-col gap-4 md:gap-6 md:col-span-2 lg:col-span-1">
+            <a href={docUrl || "#"} target="_blank" rel="noopener noreferrer" className="bg-white/5 border border-white/10 p-5 md:p-6 rounded-xl hover:bg-white/10 transition-colors group block min-h-[44px]">
               <div className="flex justify-between items-center">
                 <h5 className="font-bold text-white tracking-tight">{docLabel}</h5>
                 <ExternalLink className="w-5 h-5 text-gold group-hover:translate-x-1 transition-transform" />
               </div>
             </a>
 
-            <a href={siteUrl} target="_blank" rel="noopener noreferrer" className="bg-white/5 border border-white/10 p-6 rounded-xl hover:bg-white/10 transition-colors group block">
+            <a href={siteUrl} target="_blank" rel="noopener noreferrer" className="bg-white/5 border border-white/10 p-5 md:p-6 rounded-xl hover:bg-white/10 transition-colors group block min-h-[44px]">
               <div className="flex justify-between items-center">
                 <h5 className="font-bold text-white tracking-tight">{siteLabel}</h5>
                 <ExternalLink className="w-5 h-5 text-gold group-hover:translate-x-1 transition-transform" />
