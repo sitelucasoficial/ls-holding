@@ -32,7 +32,7 @@ const HeroSection = () => {
   return (
     <>
       <header className="w-full border-b border-white/10 bg-background py-6 md:py-8">
-        <div className="container mx-auto px-4 md:px-6 flex flex-col items-center">
+        <div className="container mx-auto px-4 md:px-6 lg:px-20 flex flex-col items-center">
           {isLoading ? (
             <Skeleton className="h-20 w-48" />
           ) : logoUrl ? (
