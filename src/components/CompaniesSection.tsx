@@ -2,6 +2,7 @@ import { Play } from "lucide-react";
 import { useCompanies } from "@/hooks/useCmsData";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useRealtimeSubscription } from "@/hooks/useRealtimeSubscription";
+import { bustCache, PLACEHOLDER_IMG } from "@/lib/imageUtils";
 
 const defaultCompanies = [
   { name: "EMPREENDE BRAZIL", badge_label: "ECOSSISTEMA", badge_color: "#16a34a", description: "O maior ecossistema do empreendedor brasileiro.", logo_url: "", button_label: "VEJA MAIS", button_url: "https://empreendebrazil.com.br/" },
@@ -28,44 +29,51 @@ const CompaniesSection = () => {
               <Skeleton key={i} className="h-[300px] rounded-2xl" />
             ))
           ) : (
-            list.map((company: any) => (
-              <div
-                key={company.name}
-                className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-white/5 rounded-2xl overflow-hidden border border-white/5 group"
-              >
-                <div className="relative aspect-video lg:aspect-auto h-full min-h-[300px]">
-                  {company.logo_url ? (
-                    <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${company.logo_url}')` }} />
-                  ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900" />
-                  )}
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                    <div className="w-16 h-16 border-2 border-white/30 rounded-full flex items-center justify-center text-white backdrop-blur-sm group-hover:scale-110 transition-transform">
-                      <Play className="w-8 h-8" />
+            list.map((company: any) => {
+              const bgUrl = company.logo_url ? bustCache(company.logo_url) : null;
+              return (
+                <div
+                  key={company.name}
+                  className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-white/5 rounded-2xl overflow-hidden border border-white/5 group"
+                >
+                  <div className="relative aspect-video lg:aspect-auto h-full min-h-[300px]">
+                    {bgUrl ? (
+                      <div
+                        className="absolute inset-0 bg-cover bg-center"
+                        style={{ backgroundImage: `url('${bgUrl}')` }}
+                        onError={() => {}} 
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900" />
+                    )}
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                      <div className="w-16 h-16 border-2 border-white/30 rounded-full flex items-center justify-center text-white backdrop-blur-sm group-hover:scale-110 transition-transform">
+                        <Play className="w-8 h-8" />
+                      </div>
+                    </div>
+                    <div
+                      className="absolute top-6 left-6 text-[10px] font-bold px-3 py-1 rounded text-white tracking-widest"
+                      style={{ backgroundColor: company.badge_color || "#16a34a" }}
+                    >
+                      {company.badge_label}
                     </div>
                   </div>
-                  <div
-                    className="absolute top-6 left-6 text-[10px] font-bold px-3 py-1 rounded text-white tracking-widest"
-                    style={{ backgroundColor: company.badge_color || "#16a34a" }}
-                  >
-                    {company.badge_label}
+
+                  <div className="p-10 lg:p-16">
+                    <h4 className="text-3xl font-black text-white mb-6">{company.name}</h4>
+                    <p className="text-slate-400 mb-10 leading-relaxed max-w-md">{company.description}</p>
+                    <a
+                      href={company.button_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="border border-gold text-gold font-bold px-8 py-3 rounded-lg hover:bg-gold hover:text-black transition-all inline-block"
+                    >
+                      {company.button_label || "VEJA MAIS"}
+                    </a>
                   </div>
                 </div>
-
-                <div className="p-10 lg:p-16">
-                  <h4 className="text-3xl font-black text-white mb-6">{company.name}</h4>
-                  <p className="text-slate-400 mb-10 leading-relaxed max-w-md">{company.description}</p>
-                  <a
-                    href={company.button_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="border border-gold text-gold font-bold px-8 py-3 rounded-lg hover:bg-gold hover:text-black transition-all inline-block"
-                  >
-                    {company.button_label || "VEJA MAIS"}
-                  </a>
-                </div>
-              </div>
-            ))
+              );
+            })
           )}
         </div>
       </div>

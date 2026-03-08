@@ -1,6 +1,7 @@
 import { ArrowRight, Diamond } from "lucide-react";
 import { useSiteConfig } from "@/hooks/useCmsData";
 import { useRealtimeSubscription } from "@/hooks/useRealtimeSubscription";
+import { bustCache, handleImgError } from "@/lib/imageUtils";
 
 const HeroSection = () => {
   useRealtimeSubscription("site_config", ["site_config"]);
@@ -14,7 +15,6 @@ const HeroSection = () => {
   const subtitle = config?.header_subtitle || "Participações & Investimentos";
   const logoUrl = config?.header_logo_url;
 
-  // Split headline around the highlight word
   const renderHeadline = () => {
     if (!highlightWord) return <>{headline}</>;
     const parts = headline.split(highlightWord);
@@ -33,7 +33,7 @@ const HeroSection = () => {
       <header className="w-full border-b border-white/10 bg-background py-8">
         <div className="container mx-auto px-6 flex flex-col items-center">
           {logoUrl ? (
-            <img src={logoUrl} alt="LS Holdings" className="h-24 w-auto" loading="lazy" />
+            <img src={bustCache(logoUrl)} alt="LS Holdings" className="h-24 w-auto" loading="lazy" onError={handleImgError} />
           ) : (
             <>
               <div className="flex items-center gap-3 mb-1">

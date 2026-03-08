@@ -1,6 +1,7 @@
 import { ExternalLink, Play } from "lucide-react";
 import { useFounder, useFounderMedia } from "@/hooks/useCmsData";
 import { useRealtimeSubscription } from "@/hooks/useRealtimeSubscription";
+import { bustCache, handleImgError } from "@/lib/imageUtils";
 
 const defaultMediaLogos = [
   { name: "Forbes", src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAZGXiXkB5HtMFKHePF2CB4gUebGnPKcEYY1jnxSYn2KOqLmAumptZS5jf5rQCP50Wa2BQ0wMOxrmBWkZLwvVLi-ykIKcFyRihp_1nag-bZuhDx28WUL-5Q_rwfQyaUakVdSB8zWBuKg2LKkCnqW9BiMP93pX9TCavdP969LcvWixvg4Y3taRqeUMYBCppaJBGvGpiP8K29J4F9Qm9z0mJUQFYMcsbodcsQGxw74tR7IjRhpJ9McSTVPF5G4foKI5Qtfn0yjb07yxU" },
@@ -46,7 +47,7 @@ const FounderSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="relative group">
             <div className="aspect-[3/4] rounded-xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
-              <img alt={name} className="w-full h-full object-cover" src={photo} loading="lazy" />
+              <img alt={name} className="w-full h-full object-cover" src={bustCache(photo)} loading="lazy" onError={handleImgError} />
             </div>
           </div>
 
@@ -70,7 +71,7 @@ const FounderSection = () => {
                   const wrapperProps = link ? { href: link, target: "_blank", rel: "noopener noreferrer" } : {};
                   return (
                     <Wrapper key={logo.id || imgAlt} {...wrapperProps as any} className="hover:opacity-80 transition-opacity">
-                      <img alt={imgAlt} src={imgSrc} className="w-full h-auto" loading="lazy" />
+                      <img alt={imgAlt} src={bustCache(imgSrc)} className="w-full h-auto" loading="lazy" onError={handleImgError} />
                     </Wrapper>
                   );
                 })}
@@ -94,7 +95,7 @@ const FounderSection = () => {
             </a>
 
             <a href={videoUrl || "#"} target="_blank" rel="noopener noreferrer" className="relative mt-auto aspect-video rounded-xl overflow-hidden group cursor-pointer block">
-              <img alt="Video thumbnail" className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" src={videoThumb} loading="lazy" />
+              <img alt="Video thumbnail" className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" src={bustCache(videoThumb)} loading="lazy" onError={handleImgError} />
               <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40">
                 <div className="w-12 h-12 bg-gold rounded-full flex items-center justify-center text-black mb-2">
                   <Play className="w-5 h-5" />
