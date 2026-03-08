@@ -25,6 +25,7 @@ interface CompanyForm {
   button_label: string;
   button_url: string;
   display_order: number;
+  show_play_icon: boolean;
 }
 
 const emptyCompany: CompanyForm = {
@@ -37,6 +38,7 @@ const emptyCompany: CompanyForm = {
   button_label: "VEJA MAIS",
   button_url: "",
   display_order: 0,
+  show_play_icon: true,
 };
 
 const AdminCompaniesEditor = () => {
@@ -62,6 +64,7 @@ const AdminCompaniesEditor = () => {
           button_label: c.button_label || "VEJA MAIS",
           button_url: c.button_url || "",
           display_order: c.display_order ?? 0,
+          show_play_icon: c.show_play_icon ?? true,
         }))
       );
     }
@@ -324,6 +327,20 @@ const AdminCompaniesEditor = () => {
                   folder="companies"
                   label="Imagem de fundo / Logo"
                 />
+
+                {/* Show play icon toggle */}
+                <div className="flex items-center gap-3">
+                  <label className="relative inline-flex items-center cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={form.show_play_icon}
+                      onChange={(e) => updateField(idx, "show_play_icon", e.target.checked as any)}
+                      className="sr-only peer"
+                    />
+                    <div className="w-11 h-6 bg-muted rounded-full peer peer-checked:bg-primary transition-colors after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full" />
+                  </label>
+                  <span className="text-sm font-medium text-muted-foreground">Exibir ícone de play na capa</span>
+                </div>
 
                 {/* Video URL */}
                 <div>
