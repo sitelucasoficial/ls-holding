@@ -19,7 +19,7 @@ const FooterSection = () => {
   return (
     <footer className="bg-[hsl(30,10%,7%)] pt-24 pb-12 border-t border-white/5">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24 mb-20 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-32 gap-y-12 mb-20 mx-auto w-fit">
           <div>
             <h5 className="text-white font-bold mb-8 text-sm uppercase tracking-widest gold-underline">Contatos</h5>
             <ul className="space-y-4 text-slate-400">
@@ -44,7 +44,7 @@ const FooterSection = () => {
             </a>
           </div>
 
-          <div className="flex flex-col items-start lg:items-start">
+          <div className="flex flex-col items-start">
             <h5 className="text-white font-bold mb-8 text-sm uppercase tracking-widest gold-underline">Siga-nos</h5>
             <div className="flex gap-4">
               <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-gold hover:text-black transition-all text-slate-400">
