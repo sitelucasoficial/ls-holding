@@ -70,8 +70,8 @@ const FooterSection = () => {
           </div>
           <p className="text-slate-500 text-xs">{copyright}</p>
           <div className="flex gap-6 text-[10px] uppercase font-bold text-slate-500">
-            <a className="hover:text-white transition-colors" href="#">Termos de Uso</a>
-            <a className="hover:text-white transition-colors" href="#">Privacidade</a>
+            <span>Feito por <a className="hover:text-white transition-colors" href="https://www.moadigital.com.br/" target="_blank" rel="noopener noreferrer">MOA Digital</a></span>
+            <a className="hover:text-white transition-colors" href="/privacidade">Privacidade</a>
           </div>
         </div>
       </div>
