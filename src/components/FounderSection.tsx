@@ -62,7 +62,7 @@ const FounderSection = () => {
               <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">
                 Mídia & Reconhecimento
               </p>
-              <div className="grid grid-cols-2 gap-4 opacity-40 grayscale contrast-125">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1 opacity-40 grayscale contrast-125">
                 {mediaLogos.map((logo: any) => {
                   const imgSrc = logo.image_url || logo.src;
                   const imgAlt = logo.label || logo.name;
