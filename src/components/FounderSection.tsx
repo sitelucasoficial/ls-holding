@@ -1,5 +1,6 @@
 import { ExternalLink, Play } from "lucide-react";
 import { useFounder, useFounderMedia } from "@/hooks/useCmsData";
+import { useRealtimeSubscription } from "@/hooks/useRealtimeSubscription";
 
 const defaultMediaLogos = [
   { name: "Forbes", src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAZGXiXkB5HtMFKHePF2CB4gUebGnPKcEYY1jnxSYn2KOqLmAumptZS5jf5rQCP50Wa2BQ0wMOxrmBWkZLwvVLi-ykIKcFyRihp_1nag-bZuhDx28WUL-5Q_rwfQyaUakVdSB8zWBuKg2LKkCnqW9BiMP93pX9TCavdP969LcvWixvg4Y3taRqeUMYBCppaJBGvGpiP8K29J4F9Qm9z0mJUQFYMcsbodcsQGxw74tR7IjRhpJ9McSTVPF5G4foKI5Qtfn0yjb07yxU" },
@@ -17,6 +18,8 @@ const defaultPhoto = "https://lh3.googleusercontent.com/aida-public/AB6AXuDya_C1
 const defaultVideoThumb = "https://lh3.googleusercontent.com/aida-public/AB6AXuBRzCiKM2E1nUEVwP74KxD6CuiFkgMDYKGR7CJCTlBQIImEChHeE5PeV0O6397w-7IEFD7bUja00jOLL663GRT2k8ASddublMs_TNg6SqNTujsuYY01hNaZUudRQJ64W2FhVG04v1Hi_zezYYAOgxVgYEoszG7RDqQ7YSoaI7Kd7XGfJREDYBoXUt-p_Xji8ldR-XIrwK87O2gwYUZ-CJr86esmviGg-4yc0uE_ppOQ05PJvp7fvTZPwrGX-s299_eDsaA195MV2pE";
 
 const FounderSection = () => {
+  useRealtimeSubscription("founder", ["founder"]);
+  useRealtimeSubscription("founder_media", ["founder_media"]);
   const { data: founder } = useFounder();
   const { data: founderMedia } = useFounderMedia();
 
