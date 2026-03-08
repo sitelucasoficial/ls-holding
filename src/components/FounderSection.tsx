@@ -46,7 +46,7 @@ const FounderSection = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="relative group">
-            <div className="aspect-[3/4] rounded-xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
+            <div className="aspect-[3/4] rounded-xl overflow-hidden transition-all duration-500">
               <img alt={name} className="w-full h-full object-cover" src={bustCache(photo)} loading="lazy" onError={handleImgError} />
             </div>
           </div>
