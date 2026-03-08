@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, Globe, Camera, Diamond } from "lucide-react";
 import { useFooter } from "@/hooks/useCmsData";
+import { useRealtimeSubscription } from "@/hooks/useRealtimeSubscription";
 
 const FooterSection = () => {
   const { data: footer } = useFooter();

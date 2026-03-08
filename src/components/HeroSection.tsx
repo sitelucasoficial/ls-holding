@@ -1,7 +1,9 @@
 import { ArrowRight, Diamond } from "lucide-react";
 import { useSiteConfig } from "@/hooks/useCmsData";
+import { useRealtimeSubscription } from "@/hooks/useRealtimeSubscription";
 
 const HeroSection = () => {
+  useRealtimeSubscription("site_config", ["site_config"]);
   const { data: config } = useSiteConfig();
 
   const headline = config?.hero_headline || "Impactar, potencializar e transformar a vida de pessoas e empresas.";
