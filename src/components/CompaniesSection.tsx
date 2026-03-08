@@ -47,9 +47,11 @@ const CompaniesSection = () => {
                       <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900" />
                     )}
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                      <div className="w-16 h-16 border-2 border-white/30 rounded-full flex items-center justify-center text-white backdrop-blur-sm group-hover:scale-110 transition-transform">
-                        <Play className="w-8 h-8" />
-                      </div>
+                      {(company.show_play_icon ?? true) && (
+                        <div className="w-16 h-16 border-2 border-white/30 rounded-full flex items-center justify-center text-white backdrop-blur-sm group-hover:scale-110 transition-transform">
+                          <Play className="w-8 h-8" />
+                        </div>
+                      )}
                     </div>
                     <div
                       className="absolute top-6 left-6 text-[10px] font-bold px-3 py-1 rounded text-white tracking-widest"

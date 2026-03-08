@@ -328,6 +328,20 @@ const AdminCompaniesEditor = () => {
                   label="Imagem de fundo / Logo"
                 />
 
+                {/* Show play icon toggle */}
+                <div className="flex items-center gap-3">
+                  <label className="relative inline-flex items-center cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={form.show_play_icon}
+                      onChange={(e) => updateField(idx, "show_play_icon", e.target.checked as any)}
+                      className="sr-only peer"
+                    />
+                    <div className="w-11 h-6 bg-muted rounded-full peer peer-checked:bg-primary transition-colors after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full" />
+                  </label>
+                  <span className="text-sm font-medium text-muted-foreground">Exibir ícone de play na capa</span>
+                </div>
+
                 {/* Video URL */}
                 <div>
                   <label className="block text-sm font-medium text-muted-foreground mb-1">URL do vídeo de fundo</label>
