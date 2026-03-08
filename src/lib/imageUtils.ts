@@ -1,13 +1,14 @@
 /**
- * Appends a cache-busting timestamp to Supabase Storage URLs
- * to force browsers to load the latest image.
+ * Appends a cache-busting timestamp to Supabase Storage URLs.
+ * Uses a stable timestamp per page load to avoid re-renders breaking cache.
  */
+const PAGE_LOAD_TS = Date.now();
+
 export function bustCache(url: string | undefined | null): string {
   if (!url) return "";
-  // Strip any existing cache-bust param
   const clean = url.replace(/[?&]t=\d+/, "");
   const separator = clean.includes("?") ? "&" : "?";
-  return `${clean}${separator}t=${Date.now()}`;
+  return `${clean}${separator}t=${PAGE_LOAD_TS}`;
 }
 
 /**

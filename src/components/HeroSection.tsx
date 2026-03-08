@@ -2,10 +2,11 @@ import { ArrowRight, Diamond } from "lucide-react";
 import { useSiteConfig } from "@/hooks/useCmsData";
 import { useRealtimeSubscription } from "@/hooks/useRealtimeSubscription";
 import { bustCache, handleImgError } from "@/lib/imageUtils";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const HeroSection = () => {
   useRealtimeSubscription("site_config", ["site_config"]);
-  const { data: config } = useSiteConfig();
+  const { data: config, isLoading } = useSiteConfig();
 
   const headline = config?.hero_headline || "Impactar, potencializar e transformar a vida de pessoas e empresas.";
   const highlightWord = config?.hero_highlight_word || "transformar";
@@ -32,8 +33,19 @@ const HeroSection = () => {
     <>
       <header className="w-full border-b border-white/10 bg-background py-6 md:py-8">
         <div className="container mx-auto px-4 md:px-6 flex flex-col items-center">
-          {logoUrl ? (
-            <img src={bustCache(logoUrl)} alt="LS Holdings" className="h-16 md:h-20 lg:h-24 w-auto" loading="lazy" onError={handleImgError} />
+          {isLoading ? (
+            <Skeleton className="h-20 w-48" />
+          ) : logoUrl ? (
+            <img
+              src={bustCache(logoUrl)}
+              alt="LS Holdings"
+              className="h-16 md:h-20 lg:h-24 w-auto"
+              loading="eager"
+              fetchPriority="high"
+              onError={handleImgError}
+              width={200}
+              height={96}
+            />
           ) : (
             <>
               <div className="flex items-center gap-3 mb-1">
@@ -50,25 +62,35 @@ const HeroSection = () => {
 
       <section className="relative py-10 md:py-16 lg:py-24 overflow-hidden">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            <div className="lg:col-span-7">
-              <h2 className="text-2xl md:text-3xl lg:text-5xl font-black leading-[1.1] text-white">
-                {renderHeadline()}
-              </h2>
+          {isLoading ? (
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+              <div className="lg:col-span-7"><Skeleton className="h-24 w-full" /></div>
+              <div className="lg:col-span-5 space-y-4">
+                <Skeleton className="h-16 w-full" />
+                <Skeleton className="h-12 w-48" />
+              </div>
             </div>
-            <div className="lg:col-span-5 flex flex-col items-start gap-6 lg:gap-8">
-              <p className="text-base md:text-lg text-slate-400 leading-relaxed border-l-2 border-gold pl-6">
-                {description}
-              </p>
-              <a
-                href={ctaLink}
-                className="bg-gold hover:bg-gold-light transition-colors text-black font-bold py-4 px-10 rounded-lg flex items-center justify-center gap-2 group w-full md:w-auto"
-              >
-                {ctaLabel}
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              <div className="lg:col-span-7">
+                <h2 className="text-2xl md:text-3xl lg:text-5xl font-black leading-[1.1] text-white">
+                  {renderHeadline()}
+                </h2>
+              </div>
+              <div className="lg:col-span-5 flex flex-col items-start gap-6 lg:gap-8">
+                <p className="text-base md:text-lg text-slate-400 leading-relaxed border-l-2 border-gold pl-6">
+                  {description}
+                </p>
+                <a
+                  href={ctaLink}
+                  className="bg-gold hover:bg-gold-light transition-colors text-black font-bold py-4 px-10 rounded-lg flex items-center justify-center gap-2 group w-full md:w-auto"
+                >
+                  {ctaLabel}
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
     </>

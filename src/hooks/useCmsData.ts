@@ -21,8 +21,6 @@ export function useSiteConfig() {
       data?.forEach((row: any) => { map[row.key] = row.value; });
       return map;
     },
-    staleTime: 1000 * 30,
-    refetchOnWindowFocus: true,
   });
 }
 
@@ -53,8 +51,6 @@ export function useFounder() {
       if (error) throw error;
       return data;
     },
-    staleTime: 1000 * 30,
-    refetchOnWindowFocus: true,
   });
 }
 
@@ -81,8 +77,6 @@ export function useCompanies() {
       if (error) throw error;
       return data || [];
     },
-    staleTime: 1000 * 30,
-    refetchOnWindowFocus: true,
   });
 }
 
@@ -128,8 +122,6 @@ export function useFooter() {
       if (error) throw error;
       return data;
     },
-    staleTime: 1000 * 30,
-    refetchOnWindowFocus: true,
   });
 }
 
@@ -156,8 +148,6 @@ export function useFounderMedia() {
       if (error) throw error;
       return data || [];
     },
-    staleTime: 1000 * 30,
-    refetchOnWindowFocus: true,
   });
 }
 
