@@ -44,7 +44,7 @@ const FooterSection = () => {
             </a>
           </div>
 
-          <div className="flex flex-col items-start lg:items-end">
+          <div className="flex flex-col items-start lg:items-start">
             <h5 className="text-white font-bold mb-8 text-sm uppercase tracking-widest gold-underline">Siga-nos</h5>
             <div className="flex gap-4">
               <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-gold hover:text-black transition-all text-slate-400">
