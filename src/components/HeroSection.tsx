@@ -33,7 +33,7 @@ const HeroSection = () => {
       <header className="w-full border-b border-white/10 bg-background py-8">
         <div className="container mx-auto px-6 flex flex-col items-center">
           {logoUrl ? (
-            <img src={logoUrl} alt="LS Holdings" className="h-16 w-auto" loading="lazy" />
+            <img src={logoUrl} alt="LS Holdings" className="h-24 w-auto" loading="lazy" />
           ) : (
             <>
               <div className="flex items-center gap-3 mb-1">
