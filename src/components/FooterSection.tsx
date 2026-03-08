@@ -22,10 +22,10 @@ const FooterSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-8 md:gap-y-12 mb-12 md:mb-20 w-full items-center">
           <div className="text-center md:text-left">
             <h5 className="text-white font-bold mb-6 md:mb-8 text-sm uppercase tracking-widest gold-underline inline-block md:block">Contatos</h5>
-            <ul className="space-y-4 text-slate-400">
-              <li className="flex items-center justify-center md:justify-start gap-3 min-h-[44px]"><Mail className="w-4 h-4 text-gold shrink-0" />{email}</li>
-              <li className="flex items-center justify-center md:justify-start gap-3 min-h-[44px]"><Phone className="w-4 h-4 text-gold shrink-0" /><a href="https://api.whatsapp.com/send/?phone=5548996624084&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">{phone1}</a></li>
-              <li className="flex items-center justify-center md:justify-start gap-3 min-h-[44px]"><Phone className="w-4 h-4 text-gold shrink-0" />{phone2}</li>
+            <ul className="space-y-1 text-slate-400 leading-relaxed">
+              <li className="flex items-center justify-center md:justify-start gap-3"><Mail className="w-4 h-4 text-gold shrink-0" />{email}</li>
+              <li className="flex items-center justify-center md:justify-start gap-3"><Phone className="w-4 h-4 text-gold shrink-0" /><a href="https://api.whatsapp.com/send/?phone=5548996624084&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">{phone1}</a></li>
+              <li className="flex items-center justify-center md:justify-start gap-3"><Phone className="w-4 h-4 text-gold shrink-0" />{phone2}</li>
             </ul>
           </div>
 
