@@ -64,6 +64,7 @@ const AdminCompaniesEditor = () => {
           button_label: c.button_label || "VEJA MAIS",
           button_url: c.button_url || "",
           display_order: c.display_order ?? 0,
+          show_play_icon: c.show_play_icon ?? true,
         }))
       );
     }
