@@ -1,39 +1,31 @@
 -- =============================================
--- EXECUTE THIS SQL IN YOUR SUPABASE SQL EDITOR
--- Garante bucket, tabelas e políticas para TODO o CMS
+-- COLE ESTE SQL INTEIRO NO SUPABASE SQL EDITOR
 -- =============================================
 
--- 1. STORAGE BUCKET (para TODAS as imagens do CMS)
+-- 1. BUCKET DE STORAGE
 INSERT INTO storage.buckets (id, name, public)
 VALUES ('site-assets', 'site-assets', true)
 ON CONFLICT (id) DO UPDATE SET public = true;
 
--- Limpa políticas antigas para recriar sem conflito
-DO $$ BEGIN
-  DROP POLICY IF EXISTS "Public read access" ON storage.objects;
-  DROP POLICY IF EXISTS "Authenticated upload" ON storage.objects;
-  DROP POLICY IF EXISTS "Authenticated update" ON storage.objects;
-  DROP POLICY IF EXISTS "Authenticated delete" ON storage.objects;
-EXCEPTION WHEN OTHERS THEN NULL;
-END $$;
+-- 2. POLÍTICAS DE STORAGE (remove antigas e recria)
+DROP POLICY IF EXISTS "Public read access" ON storage.objects;
+DROP POLICY IF EXISTS "Authenticated upload" ON storage.objects;
+DROP POLICY IF EXISTS "Authenticated update" ON storage.objects;
+DROP POLICY IF EXISTS "Authenticated delete" ON storage.objects;
 
--- Leitura pública de todos os assets
 CREATE POLICY "Public read access" ON storage.objects
 FOR SELECT USING (bucket_id = 'site-assets');
 
--- Upload por usuários autenticados
 CREATE POLICY "Authenticated upload" ON storage.objects
 FOR INSERT TO authenticated WITH CHECK (bucket_id = 'site-assets');
 
--- Atualização por usuários autenticados
 CREATE POLICY "Authenticated update" ON storage.objects
 FOR UPDATE TO authenticated USING (bucket_id = 'site-assets');
 
--- Deleção por usuários autenticados
 CREATE POLICY "Authenticated delete" ON storage.objects
 FOR DELETE TO authenticated USING (bucket_id = 'site-assets');
 
--- 2. site_config (header_logo_url, hero images, etc.)
+-- 3. TABELA site_config
 CREATE TABLE IF NOT EXISTS public.site_config (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   key TEXT UNIQUE NOT NULL,
@@ -41,11 +33,8 @@ CREATE TABLE IF NOT EXISTS public.site_config (
   updated_at TIMESTAMPTZ DEFAULT now()
 );
 ALTER TABLE public.site_config ENABLE ROW LEVEL SECURITY;
-DO $$ BEGIN
-  DROP POLICY IF EXISTS "Public read site_config" ON public.site_config;
-  DROP POLICY IF EXISTS "Auth manage site_config" ON public.site_config;
-EXCEPTION WHEN OTHERS THEN NULL;
-END $$;
+DROP POLICY IF EXISTS "Public read site_config" ON public.site_config;
+DROP POLICY IF EXISTS "Auth manage site_config" ON public.site_config;
 CREATE POLICY "Public read site_config" ON public.site_config FOR SELECT USING (true);
 CREATE POLICY "Auth manage site_config" ON public.site_config FOR ALL TO authenticated USING (true) WITH CHECK (true);
 
@@ -59,7 +48,7 @@ INSERT INTO public.site_config (key, value) VALUES
   ('hero_cta_link', '#empresas')
 ON CONFLICT (key) DO NOTHING;
 
--- 3. founder (foto do fundador, thumbnail do vídeo)
+-- 4. TABELA founder
 CREATE TABLE IF NOT EXISTS public.founder (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name TEXT NOT NULL DEFAULT 'Lucas Schweitzer',
@@ -76,15 +65,16 @@ CREATE TABLE IF NOT EXISTS public.founder (
   updated_at TIMESTAMPTZ DEFAULT now()
 );
 ALTER TABLE public.founder ENABLE ROW LEVEL SECURITY;
-DO $$ BEGIN
-  DROP POLICY IF EXISTS "Public read founder" ON public.founder;
-  DROP POLICY IF EXISTS "Auth manage founder" ON public.founder;
-EXCEPTION WHEN OTHERS THEN NULL;
-END $$;
+DROP POLICY IF EXISTS "Public read founder" ON public.founder;
+DROP POLICY IF EXISTS "Auth manage founder" ON public.founder;
 CREATE POLICY "Public read founder" ON public.founder FOR SELECT USING (true);
 CREATE POLICY "Auth manage founder" ON public.founder FOR ALL TO authenticated USING (true) WITH CHECK (true);
 
--- 4. founder_media (imagens de mídia/reconhecimento)
+INSERT INTO public.founder (name, bio)
+SELECT 'Lucas Schweitzer', 'Fundador do Grupo LS'
+WHERE NOT EXISTS (SELECT 1 FROM public.founder LIMIT 1);
+
+-- 5. TABELA founder_media
 CREATE TABLE IF NOT EXISTS public.founder_media (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   image_url TEXT DEFAULT '',
@@ -95,15 +85,12 @@ CREATE TABLE IF NOT EXISTS public.founder_media (
   updated_at TIMESTAMPTZ DEFAULT now()
 );
 ALTER TABLE public.founder_media ENABLE ROW LEVEL SECURITY;
-DO $$ BEGIN
-  DROP POLICY IF EXISTS "Public read founder_media" ON public.founder_media;
-  DROP POLICY IF EXISTS "Auth manage founder_media" ON public.founder_media;
-EXCEPTION WHEN OTHERS THEN NULL;
-END $$;
+DROP POLICY IF EXISTS "Public read founder_media" ON public.founder_media;
+DROP POLICY IF EXISTS "Auth manage founder_media" ON public.founder_media;
 CREATE POLICY "Public read founder_media" ON public.founder_media FOR SELECT USING (true);
 CREATE POLICY "Auth manage founder_media" ON public.founder_media FOR ALL TO authenticated USING (true) WITH CHECK (true);
 
--- 5. companies (logos e imagens de fundo das empresas)
+-- 6. TABELA companies
 CREATE TABLE IF NOT EXISTS public.companies (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name TEXT NOT NULL,
@@ -119,15 +106,12 @@ CREATE TABLE IF NOT EXISTS public.companies (
   updated_at TIMESTAMPTZ DEFAULT now()
 );
 ALTER TABLE public.companies ENABLE ROW LEVEL SECURITY;
-DO $$ BEGIN
-  DROP POLICY IF EXISTS "Public read companies" ON public.companies;
-  DROP POLICY IF EXISTS "Auth manage companies" ON public.companies;
-EXCEPTION WHEN OTHERS THEN NULL;
-END $$;
+DROP POLICY IF EXISTS "Public read companies" ON public.companies;
+DROP POLICY IF EXISTS "Auth manage companies" ON public.companies;
 CREATE POLICY "Public read companies" ON public.companies FOR SELECT USING (true);
 CREATE POLICY "Auth manage companies" ON public.companies FOR ALL TO authenticated USING (true) WITH CHECK (true);
 
--- 6. footer (logo do footer)
+-- 7. TABELA footer
 CREATE TABLE IF NOT EXISTS public.footer (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   logo_url TEXT DEFAULT '',
@@ -144,20 +128,18 @@ CREATE TABLE IF NOT EXISTS public.footer (
   updated_at TIMESTAMPTZ DEFAULT now()
 );
 ALTER TABLE public.footer ENABLE ROW LEVEL SECURITY;
-DO $$ BEGIN
-  DROP POLICY IF EXISTS "Public read footer" ON public.footer;
-  DROP POLICY IF EXISTS "Auth manage footer" ON public.footer;
-EXCEPTION WHEN OTHERS THEN NULL;
-END $$;
+DROP POLICY IF EXISTS "Public read footer" ON public.footer;
+DROP POLICY IF EXISTS "Auth manage footer" ON public.footer;
 CREATE POLICY "Public read footer" ON public.footer FOR SELECT USING (true);
 CREATE POLICY "Auth manage footer" ON public.footer FOR ALL TO authenticated USING (true) WITH CHECK (true);
 
--- Seed footer se vazio
 INSERT INTO public.footer (email)
 SELECT 'atendimento@lsholdings.com.br'
 WHERE NOT EXISTS (SELECT 1 FROM public.footer LIMIT 1);
 
--- Seed founder se vazio
-INSERT INTO public.founder (name, bio)
-SELECT 'Lucas Schweitzer', 'Fundador do Grupo LS'
-WHERE NOT EXISTS (SELECT 1 FROM public.founder LIMIT 1);
+-- 8. HABILITAR REALTIME EM TODAS AS TABELAS
+ALTER PUBLICATION supabase_realtime ADD TABLE public.site_config;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.founder;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.founder_media;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.companies;
+ALTER PUBLICATION supabase_realtime ADD TABLE public.footer;
