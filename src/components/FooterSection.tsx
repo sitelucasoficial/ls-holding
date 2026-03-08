@@ -24,7 +24,7 @@ const FooterSection = () => {
             <h5 className="text-white font-bold mb-8 text-sm uppercase tracking-widest gold-underline">Contatos</h5>
             <ul className="space-y-4 text-slate-400">
               <li className="flex items-center gap-3"><Mail className="w-4 h-4 text-gold" />{email}</li>
-              <li className="flex items-center gap-3"><Phone className="w-4 h-4 text-gold" />{phone1}</li>
+              <li className="flex items-center gap-3"><Phone className="w-4 h-4 text-gold" /><a href="https://api.whatsapp.com/send/?phone=5548996624084&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">{phone1}</a></li>
               <li className="flex items-center gap-3"><Phone className="w-4 h-4 text-gold" />{phone2}</li>
             </ul>
           </div>
