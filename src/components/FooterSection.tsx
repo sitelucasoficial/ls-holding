@@ -57,7 +57,7 @@ const FooterSection = () => {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/5 space-y-4">
+        <div className="pt-8 border-t border-white/5">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-2">
               {footer?.logo_url ? (
@@ -69,12 +69,12 @@ const FooterSection = () => {
                 </>
               )}
             </div>
+            <p className="text-slate-500 text-xs">{copyright}</p>
             <div className="flex gap-6 text-[10px] uppercase font-bold text-slate-500">
               <span>Feito por <a className="hover:text-white transition-colors" href="https://www.moadigital.com.br/" target="_blank" rel="noopener noreferrer">MOA Digital</a></span>
               <a className="hover:text-white transition-colors" href="/privacidade">Privacidade</a>
             </div>
           </div>
-          <p className="text-slate-500 text-xs text-center w-full">{copyright}</p>
         </div>
       </div>
     </footer>
