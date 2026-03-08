@@ -37,7 +37,14 @@ const FooterSection = () => {
             </p>
           </div>
 
-          <div>
+          <div className="flex flex-col items-start">
+            <p className="text-slate-500 text-xs mb-4 uppercase font-bold">Faça parte do nosso time</p>
+            <a href={workUrl} target="_blank" rel="noopener noreferrer" className="bg-gold text-black font-bold py-3 px-8 rounded-lg hover:bg-white transition-colors w-full lg:w-auto text-center">
+              {workLabel}
+            </a>
+          </div>
+
+          <div className="flex flex-col items-start lg:items-end">
             <h5 className="text-white font-bold mb-8 text-sm uppercase tracking-widest gold-underline">Siga-nos</h5>
             <div className="flex gap-4">
               <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-gold hover:text-black transition-all text-slate-400">
@@ -47,13 +54,6 @@ const FooterSection = () => {
                 <Globe className="w-5 h-5" />
               </a>
             </div>
-          </div>
-
-          <div className="flex flex-col items-start lg:items-end">
-            <p className="text-slate-500 text-xs mb-4 text-left lg:text-right uppercase font-bold">Faça parte do nosso time</p>
-            <a href={workUrl} target="_blank" rel="noopener noreferrer" className="bg-gold text-black font-bold py-3 px-8 rounded-lg hover:bg-white transition-colors w-full lg:w-auto text-center">
-              {workLabel}
-            </a>
           </div>
         </div>
 
