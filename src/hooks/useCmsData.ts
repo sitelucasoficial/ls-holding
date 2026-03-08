@@ -24,12 +24,11 @@ export function useUpdateSiteConfig() {
       for (const [key, value] of Object.entries(updates)) {
         const { error } = await supabase
           .from("site_config")
-          .update({ value, updated_at: new Date().toISOString() })
-          .eq("key", key);
-        if (error) {
-          // Try insert if not exists
-          await supabase.from("site_config").upsert({ key, value, updated_at: new Date().toISOString() });
-        }
+          .upsert(
+            { key, value, updated_at: new Date().toISOString() },
+            { onConflict: "key" }
+          );
+        if (error) throw error;
       }
     },
     onSuccess: () => qc.invalidateQueries({ queryKey: ["site_config"] }),
