@@ -36,33 +36,42 @@ const CompaniesSection = () => {
                   key={company.name}
                   className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-10 items-center bg-white/5 rounded-2xl overflow-hidden border border-white/5 group"
                 >
-                  <div className="relative h-[200px] md:h-[250px] lg:h-full lg:min-h-[300px]">
-                    {bgUrl ? (
-                      <img
-                        src={bgUrl}
-                        alt={company.name}
-                        className="absolute inset-0 w-full h-full object-cover"
-                        loading="lazy"
-                        width={640}
-                        height={360}
-                      />
-                    ) : (
-                      <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900" />
-                    )}
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                      {(company.show_play_icon ?? true) && (
-                        <div className="w-12 h-12 md:w-16 md:h-16 border-2 border-white/30 rounded-full flex items-center justify-center text-white backdrop-blur-sm group-hover:scale-110 transition-transform">
-                          <Play className="w-6 h-6 md:w-8 md:h-8" />
+                  {(() => {
+                    const showPlay = company.show_play_icon ?? true;
+                    const Wrapper = !showPlay && company.button_url ? 'a' : 'div';
+                    const wrapperProps = !showPlay && company.button_url
+                      ? { href: company.button_url, target: "_blank" as const, rel: "noopener noreferrer" }
+                      : {};
+                    return (
+                      <Wrapper {...wrapperProps} className={`relative h-[200px] md:h-[250px] lg:h-full lg:min-h-[300px] block${!showPlay && company.button_url ? ' cursor-pointer' : ''}`}>
+                        {bgUrl ? (
+                          <img
+                            src={bgUrl}
+                            alt={company.name}
+                            className="absolute inset-0 w-full h-full object-cover"
+                            loading="lazy"
+                            width={640}
+                            height={360}
+                          />
+                        ) : (
+                          <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900" />
+                        )}
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                          {showPlay && (
+                            <div className="w-12 h-12 md:w-16 md:h-16 border-2 border-white/30 rounded-full flex items-center justify-center text-white backdrop-blur-sm group-hover:scale-110 transition-transform">
+                              <Play className="w-6 h-6 md:w-8 md:h-8" />
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
-                    <div
-                      className="absolute top-4 left-4 md:top-6 md:left-6 text-[10px] font-bold px-3 py-1 rounded text-white tracking-widest"
-                      style={{ backgroundColor: company.badge_color || "#16a34a" }}
-                    >
-                      {company.badge_label}
-                    </div>
-                  </div>
+                        <div
+                          className="absolute top-4 left-4 md:top-6 md:left-6 text-[10px] font-bold px-3 py-1 rounded text-white tracking-widest"
+                          style={{ backgroundColor: company.badge_color || "#16a34a" }}
+                        >
+                          {company.badge_label}
+                        </div>
+                      </Wrapper>
+                    );
+                  })()}
 
                   <div className="p-6 md:p-10 lg:p-16">
                     <h4 className="text-2xl md:text-3xl font-black text-white mb-4 md:mb-6">{company.name}</h4>
