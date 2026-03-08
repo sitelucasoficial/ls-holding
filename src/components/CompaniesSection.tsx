@@ -2,7 +2,7 @@ import { Play } from "lucide-react";
 import { useCompanies } from "@/hooks/useCmsData";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useRealtimeSubscription } from "@/hooks/useRealtimeSubscription";
-import { bustCache, PLACEHOLDER_IMG } from "@/lib/imageUtils";
+import { bustCache } from "@/lib/imageUtils";
 
 const defaultCompanies = [
   { name: "EMPREENDE BRAZIL", badge_label: "ECOSSISTEMA", badge_color: "#16a34a", description: "O maior ecossistema do empreendedor brasileiro.", logo_url: "", button_label: "VEJA MAIS", button_url: "https://empreendebrazil.com.br/" },
@@ -36,11 +36,15 @@ const CompaniesSection = () => {
                   key={company.name}
                   className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-10 items-center bg-white/5 rounded-2xl overflow-hidden border border-white/5 group"
                 >
-                  <div className="relative aspect-video lg:aspect-auto h-[200px] md:h-[250px] lg:h-full lg:min-h-[300px]">
+                  <div className="relative h-[200px] md:h-[250px] lg:h-full lg:min-h-[300px]">
                     {bgUrl ? (
-                      <div
-                        className="absolute inset-0 bg-cover bg-center"
-                        style={{ backgroundImage: `url('${bgUrl}')` }}
+                      <img
+                        src={bgUrl}
+                        alt={company.name}
+                        className="absolute inset-0 w-full h-full object-cover"
+                        loading="lazy"
+                        width={640}
+                        height={360}
                       />
                     ) : (
                       <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900" />

@@ -2,6 +2,7 @@ import { ExternalLink, Play } from "lucide-react";
 import { useFounder, useFounderMedia } from "@/hooks/useCmsData";
 import { useRealtimeSubscription } from "@/hooks/useRealtimeSubscription";
 import { bustCache, handleImgError } from "@/lib/imageUtils";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const defaultMediaLogos = [
   { name: "Forbes", src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAZGXiXkB5HtMFKHePF2CB4gUebGnPKcEYY1jnxSYn2KOqLmAumptZS5jf5rQCP50Wa2BQ0wMOxrmBWkZLwvVLi-ykIKcFyRihp_1nag-bZuhDx28WUL-5Q_rwfQyaUakVdSB8zWBuKg2LKkCnqW9BiMP93pX9TCavdP969LcvWixvg4Y3taRqeUMYBCppaJBGvGpiP8K29J4F9Qm9z0mJUQFYMcsbodcsQGxw74tR7IjRhpJ9McSTVPF5G4foKI5Qtfn0yjb07yxU" },
@@ -21,7 +22,7 @@ const defaultVideoThumb = "https://lh3.googleusercontent.com/aida-public/AB6AXuB
 const FounderSection = () => {
   useRealtimeSubscription("founder", ["founder"]);
   useRealtimeSubscription("founder_media", ["founder_media"]);
-  const { data: founder } = useFounder();
+  const { data: founder, isLoading } = useFounder();
   const { data: founderMedia } = useFounderMedia();
 
   const name = founder?.name || "Lucas Schweitzer";
@@ -37,8 +38,23 @@ const FounderSection = () => {
   const videoUrl = founder?.video_url || "";
   const videoLabel = founder?.video_label || "VÍDEO CNBC";
 
+  if (isLoading) {
+    return (
+      <section className="py-10 md:py-16 lg:py-24 bg-[hsl(var(--neutral-dark))]/50">
+        <div className="container mx-auto px-4 md:px-6">
+          <Skeleton className="h-6 w-48 mb-12" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+            <Skeleton className="aspect-[3/4] rounded-xl" />
+            <div className="space-y-4"><Skeleton className="h-8 w-48" /><Skeleton className="h-32 w-full" /></div>
+            <div className="space-y-4"><Skeleton className="h-16 w-full" /><Skeleton className="h-16 w-full" /><Skeleton className="aspect-video w-full rounded-xl" /></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <section className="py-10 md:py-16 lg:py-24 bg-[hsl(30,10%,7%)]/50">
+    <section className="py-10 md:py-16 lg:py-24 bg-[hsl(var(--neutral-dark))]/50">
       <div className="container mx-auto px-4 md:px-6">
         <h3 className="text-gold font-bold tracking-widest text-sm mb-8 md:mb-12 uppercase">
           Conheça nosso fundador
@@ -48,7 +64,15 @@ const FounderSection = () => {
           {/* Photo */}
           <div className="relative group flex justify-center md:justify-start md:col-span-1">
             <div className="aspect-[3/4] rounded-xl overflow-hidden transition-all duration-500 w-full max-w-[280px] md:max-w-none">
-              <img alt={name} className="w-full h-full object-cover" src={bustCache(photo)} loading="lazy" onError={handleImgError} />
+              <img
+                alt={name}
+                className="w-full h-full object-cover"
+                src={bustCache(photo)}
+                loading="lazy"
+                onError={handleImgError}
+                width={400}
+                height={533}
+              />
             </div>
           </div>
 
@@ -73,7 +97,16 @@ const FounderSection = () => {
                   const wrapperProps = link ? { href: link, target: "_blank", rel: "noopener noreferrer" } : {};
                   return (
                     <Wrapper key={logo.id || imgAlt} {...wrapperProps as any} className="hover:opacity-80 transition-opacity py-1 min-h-[44px] flex items-center">
-                      <img alt={imgAlt} src={bustCache(imgSrc)} className="w-full object-contain" style={{ height: '60px' }} loading="lazy" onError={handleImgError} />
+                      <img
+                        alt={imgAlt}
+                        src={bustCache(imgSrc)}
+                        className="w-full object-contain"
+                        style={{ height: '60px' }}
+                        loading="lazy"
+                        onError={handleImgError}
+                        width={120}
+                        height={60}
+                      />
                     </Wrapper>
                   );
                 })}
@@ -98,7 +131,15 @@ const FounderSection = () => {
             </a>
 
             <a href={videoUrl || "#"} target="_blank" rel="noopener noreferrer" className="relative mt-auto aspect-video rounded-xl overflow-hidden group cursor-pointer block">
-              <img alt="Video thumbnail" className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" src={bustCache(videoThumb)} loading="lazy" onError={handleImgError} />
+              <img
+                alt="Video thumbnail"
+                className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                src={bustCache(videoThumb)}
+                loading="lazy"
+                onError={handleImgError}
+                width={640}
+                height={360}
+              />
               <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40">
                 <div className="w-12 h-12 bg-gold rounded-full flex items-center justify-center text-black mb-2">
                   <Play className="w-5 h-5" />
