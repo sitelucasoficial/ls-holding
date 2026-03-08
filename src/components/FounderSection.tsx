@@ -62,7 +62,7 @@ const FounderSection = () => {
               <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">
                 Mídia & Reconhecimento
               </p>
-              <div className="grid grid-cols-2 gap-x-4 gap-y-0 opacity-40 grayscale contrast-125 items-center">
+              <div className="grid grid-cols-2 gap-x-2 gap-y-0 opacity-40 grayscale contrast-125 items-center">
                 {mediaLogos.map((logo: any) => {
                   const imgSrc = logo.image_url || logo.src;
                   const imgAlt = logo.label || logo.name;
@@ -71,7 +71,7 @@ const FounderSection = () => {
                   const wrapperProps = link ? { href: link, target: "_blank", rel: "noopener noreferrer" } : {};
                   return (
                     <Wrapper key={logo.id || imgAlt} {...wrapperProps as any} className="hover:opacity-80 transition-opacity py-1">
-                      <img alt={imgAlt} src={bustCache(imgSrc)} className="w-full object-contain" style={{ height: '65px' }} loading="lazy" onError={handleImgError} />
+                      <img alt={imgAlt} src={bustCache(imgSrc)} className="w-full object-contain" style={{ height: '80px' }} loading="lazy" onError={handleImgError} />
                     </Wrapper>
                   );
                 })}
