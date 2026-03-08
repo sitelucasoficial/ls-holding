@@ -52,7 +52,7 @@ const HeroSection = () => {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7">
-              <h2 className="text-5xl lg:text-7xl font-black leading-[1.1] text-white">
+              <h2 className="text-3xl lg:text-5xl font-black leading-[1.1] text-white">
                 {renderHeadline()}
               </h2>
             </div>
