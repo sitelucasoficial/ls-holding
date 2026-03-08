@@ -38,6 +38,7 @@ const emptyCompany: CompanyForm = {
   button_label: "VEJA MAIS",
   button_url: "",
   display_order: 0,
+  show_play_icon: true,
 };
 
 const AdminCompaniesEditor = () => {
