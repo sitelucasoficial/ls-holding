@@ -25,6 +25,7 @@ interface CompanyForm {
   button_label: string;
   button_url: string;
   display_order: number;
+  show_play_icon: boolean;
 }
 
 const emptyCompany: CompanyForm = {
