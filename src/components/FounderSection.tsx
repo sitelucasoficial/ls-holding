@@ -18,6 +18,8 @@ const defaultPhoto = "https://lh3.googleusercontent.com/aida-public/AB6AXuDya_C1
 const defaultVideoThumb = "https://lh3.googleusercontent.com/aida-public/AB6AXuBRzCiKM2E1nUEVwP74KxD6CuiFkgMDYKGR7CJCTlBQIImEChHeE5PeV0O6397w-7IEFD7bUja00jOLL663GRT2k8ASddublMs_TNg6SqNTujsuYY01hNaZUudRQJ64W2FhVG04v1Hi_zezYYAOgxVgYEoszG7RDqQ7YSoaI7Kd7XGfJREDYBoXUt-p_Xji8ldR-XIrwK87O2gwYUZ-CJr86esmviGg-4yc0uE_ppOQ05PJvp7fvTZPwrGX-s299_eDsaA195MV2pE";
 
 const FounderSection = () => {
+  useRealtimeSubscription("founder", ["founder"]);
+  useRealtimeSubscription("founder_media", ["founder_media"]);
   const { data: founder } = useFounder();
   const { data: founderMedia } = useFounderMedia();
 

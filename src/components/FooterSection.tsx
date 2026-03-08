@@ -3,6 +3,7 @@ import { useFooter } from "@/hooks/useCmsData";
 import { useRealtimeSubscription } from "@/hooks/useRealtimeSubscription";
 
 const FooterSection = () => {
+  useRealtimeSubscription("footer", ["footer"]);
   const { data: footer } = useFooter();
 
   const email = footer?.email || "atendimento@lsholdings.com.br";

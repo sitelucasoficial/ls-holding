@@ -11,6 +11,7 @@ const defaultCompanies = [
 ];
 
 const CompaniesSection = () => {
+  useRealtimeSubscription("companies", ["companies"]);
   const { data: companies, isLoading } = useCompanies();
   const list = companies && companies.length > 0 ? companies : defaultCompanies;
 
