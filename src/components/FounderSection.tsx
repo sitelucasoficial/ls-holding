@@ -71,7 +71,7 @@ const FounderSection = () => {
                   const wrapperProps = link ? { href: link, target: "_blank", rel: "noopener noreferrer" } : {};
                   return (
                     <Wrapper key={logo.id || imgAlt} {...wrapperProps as any} className="hover:opacity-80 transition-opacity py-1">
-                      <img alt={imgAlt} src={bustCache(imgSrc)} className="w-full h-10 object-contain" loading="lazy" onError={handleImgError} />
+                      <img alt={imgAlt} src={bustCache(imgSrc)} className="w-full h-14 object-contain" loading="lazy" onError={handleImgError} />
                     </Wrapper>
                   );
                 })}
