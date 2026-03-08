@@ -18,7 +18,7 @@ const CompaniesSection = () => {
 
   return (
     <section id="empresas" className="py-10 md:py-16 lg:py-24 bg-background">
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-4 md:px-6 lg:px-20">
         <h3 className="text-gold font-bold tracking-widest text-sm mb-10 md:mb-16 uppercase">
           Conheça nossas empresas
         </h3>

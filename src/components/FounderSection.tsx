@@ -55,7 +55,7 @@ const FounderSection = () => {
 
   return (
     <section className="py-10 md:py-16 lg:py-24 bg-[hsl(var(--neutral-dark))]/50">
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-4 md:px-6 lg:px-20">
         <h3 className="text-gold font-bold tracking-widest text-sm mb-8 md:mb-12 uppercase">
           Conheça nosso fundador
         </h3>

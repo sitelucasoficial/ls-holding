@@ -61,7 +61,7 @@ const HeroSection = () => {
       </header>
 
       <section className="relative py-10 md:py-16 lg:py-24 overflow-hidden">
-        <div className="container mx-auto px-4 md:px-6">
+        <div className="container mx-auto px-4 md:px-6 lg:px-20">
           {isLoading ? (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
               <div className="lg:col-span-7"><Skeleton className="h-24 w-full" /></div>
