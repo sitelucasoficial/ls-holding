@@ -32,17 +32,19 @@ const HeroSection = () => {
     <>
       <header className="w-full border-b border-white/10 bg-background py-8">
         <div className="container mx-auto px-6 flex flex-col items-center">
-          <div className="flex items-center gap-3 mb-1">
-            {logoUrl ? (
-              <img src={logoUrl} alt="LS Holdings" className="h-8 w-auto" loading="lazy" />
-            ) : (
-              <Diamond className="w-7 h-7 text-gold" />
-            )}
-            <h1 className="text-3xl font-black tracking-tighter text-white">LS HOLDINGS</h1>
-          </div>
-          <p className="text-[10px] tracking-[0.3em] font-bold text-slate-400 uppercase">
-            {subtitle}
-          </p>
+          {logoUrl ? (
+            <img src={logoUrl} alt="LS Holdings" className="h-12 w-auto" loading="lazy" />
+          ) : (
+            <>
+              <div className="flex items-center gap-3 mb-1">
+                <Diamond className="w-7 h-7 text-gold" />
+                <h1 className="text-3xl font-black tracking-tighter text-white">LS HOLDINGS</h1>
+              </div>
+              <p className="text-[10px] tracking-[0.3em] font-bold text-muted-foreground uppercase">
+                {subtitle}
+              </p>
+            </>
+          )}
         </div>
       </header>
 
