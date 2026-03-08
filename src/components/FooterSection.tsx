@@ -50,9 +50,6 @@ const FooterSection = () => {
               <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-gold hover:text-black transition-all text-slate-400">
                 <Camera className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-gold hover:text-black transition-all text-slate-400">
-                <Globe className="w-5 h-5" />
-              </a>
             </div>
           </div>
         </div>
