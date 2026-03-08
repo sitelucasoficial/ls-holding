@@ -1,6 +1,15 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
+const ALL_CMS_KEYS = [["site_config"], ["founder"], ["founder_media"], ["companies"], ["footer"]];
+
+function useInvalidateAll() {
+  const qc = useQueryClient();
+  return () => {
+    ALL_CMS_KEYS.forEach((key) => qc.invalidateQueries({ queryKey: key }));
+  };
+}
+
 // ---- Site Config (key-value) ----
 export function useSiteConfig() {
   return useQuery({
@@ -18,7 +27,7 @@ export function useSiteConfig() {
 }
 
 export function useUpdateSiteConfig() {
-  const qc = useQueryClient();
+  const invalidateAll = useInvalidateAll();
   return useMutation({
     mutationFn: async (updates: Record<string, string>) => {
       for (const [key, value] of Object.entries(updates)) {
@@ -31,7 +40,7 @@ export function useUpdateSiteConfig() {
         if (error) throw error;
       }
     },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["site_config"] }),
+    onSuccess: invalidateAll,
   });
 }
 
@@ -50,7 +59,7 @@ export function useFounder() {
 }
 
 export function useUpdateFounder() {
-  const qc = useQueryClient();
+  const invalidateAll = useInvalidateAll();
   return useMutation({
     mutationFn: async (updates: any) => {
       const { data: existing } = await supabase.from("founder").select("id").limit(1).single();
@@ -59,7 +68,7 @@ export function useUpdateFounder() {
         if (error) throw error;
       }
     },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["founder"] }),
+    onSuccess: invalidateAll,
   });
 }
 
@@ -78,35 +87,35 @@ export function useCompanies() {
 }
 
 export function useUpdateCompany() {
-  const qc = useQueryClient();
+  const invalidateAll = useInvalidateAll();
   return useMutation({
     mutationFn: async ({ id, ...updates }: any) => {
       const { error } = await supabase.from("companies").update({ ...updates, updated_at: new Date().toISOString() }).eq("id", id);
       if (error) throw error;
     },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["companies"] }),
+    onSuccess: invalidateAll,
   });
 }
 
 export function useCreateCompany() {
-  const qc = useQueryClient();
+  const invalidateAll = useInvalidateAll();
   return useMutation({
     mutationFn: async (company: any) => {
       const { error } = await supabase.from("companies").insert(company);
       if (error) throw error;
     },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["companies"] }),
+    onSuccess: invalidateAll,
   });
 }
 
 export function useDeleteCompany() {
-  const qc = useQueryClient();
+  const invalidateAll = useInvalidateAll();
   return useMutation({
     mutationFn: async (id: string) => {
       const { error } = await supabase.from("companies").delete().eq("id", id);
       if (error) throw error;
     },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["companies"] }),
+    onSuccess: invalidateAll,
   });
 }
 
@@ -125,7 +134,7 @@ export function useFooter() {
 }
 
 export function useUpdateFooter() {
-  const qc = useQueryClient();
+  const invalidateAll = useInvalidateAll();
   return useMutation({
     mutationFn: async (updates: any) => {
       const { data: existing } = await supabase.from("footer").select("id").limit(1).single();
@@ -134,7 +143,7 @@ export function useUpdateFooter() {
         if (error) throw error;
       }
     },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["footer"] }),
+    onSuccess: invalidateAll,
   });
 }
 
@@ -153,35 +162,35 @@ export function useFounderMedia() {
 }
 
 export function useCreateFounderMedia() {
-  const qc = useQueryClient();
+  const invalidateAll = useInvalidateAll();
   return useMutation({
     mutationFn: async (item: any) => {
       const { error } = await supabase.from("founder_media").insert(item);
       if (error) throw error;
     },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["founder_media"] }),
+    onSuccess: invalidateAll,
   });
 }
 
 export function useUpdateFounderMedia() {
-  const qc = useQueryClient();
+  const invalidateAll = useInvalidateAll();
   return useMutation({
     mutationFn: async ({ id, ...updates }: any) => {
       const { error } = await supabase.from("founder_media").update(updates).eq("id", id);
       if (error) throw error;
     },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["founder_media"] }),
+    onSuccess: invalidateAll,
   });
 }
 
 export function useDeleteFounderMedia() {
-  const qc = useQueryClient();
+  const invalidateAll = useInvalidateAll();
   return useMutation({
     mutationFn: async (id: string) => {
       const { error } = await supabase.from("founder_media").delete().eq("id", id);
       if (error) throw error;
     },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["founder_media"] }),
+    onSuccess: invalidateAll,
   });
 }
 
