@@ -9,13 +9,13 @@ const defaultCompanies = [
   { name: "EMPREENDE BRAZIL CLUB", badge_label: "COMUNIDADE", badge_color: "#16a34a", description: "Um groupo seleto de empreendedores.", logo_url: "", button_label: "VEJA MAIS", button_url: "https://empreendebrazil.com.br/ebclub/" },
   { name: "LUSCH GARDEN", badge_label: "EXPERIÊNCIA", badge_color: "#047857", description: "5.000m² de área verde à beira-mar em Florianópolis.", logo_url: "", button_label: "VEJA MAIS", button_url: "https://luschgarden.com.br/" },
   { name: "LUSCH AGÊNCIA", badge_label: "MARKETING", badge_color: "#1e3a5f", description: "Agência de eventos 360°.", logo_url: "", button_label: "VEJA MAIS", button_url: "https://luschagencia.com.br/" },
+  { name: "LUSCH INCORPORAÇÕES", badge_label: "INCORPORAÇÕES", badge_color: "#1e3a5f", description: "Seu olhar, um horizonte de possibilidades.", logo_url: "", button_label: "SAIBA MAIS", button_url: "#", show_play_icon: false },
 ];
 
 const CompaniesSection = () => {
   useRealtimeSubscription("companies", ["companies"]);
   const { data: companies, isLoading } = useCompanies();
-  const list = (companies && companies.length > 0 ? companies : defaultCompanies)
-    .filter((v: any) => v.badge_label !== "INCORPORAÇÕES");
+  const list = companies && companies.length > 0 ? companies : defaultCompanies;
 
   return (
     <section id="empresas" className="py-10 md:py-16 lg:py-24 bg-background">
