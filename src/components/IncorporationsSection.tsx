@@ -35,8 +35,8 @@ const IncorporationsSection = () => {
   const bgUrl = incorporation.logo_url ? bustCache(incorporation.logo_url) : null;
 
   return (
-    <section id="incorporacoes" className="py-10 md:py-16 lg:py-24 bg-background">
-      <div className="container mx-auto px-4 md:px-6 lg:px-20">
+    <section id="incorporacoes" className="pb-10 md:pb-16 lg:pb-24 bg-background">
+      <div className="container mx-auto px-4 md:px-6 lg:px-20 -mt-10 md:-mt-16 lg:-mt-24 pt-8 md:pt-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-10 items-center bg-white/5 rounded-2xl overflow-hidden border border-white/5 group">
           <div className="relative h-[200px] md:h-[250px] lg:h-full lg:min-h-[300px] block">
             {bgUrl ? (
