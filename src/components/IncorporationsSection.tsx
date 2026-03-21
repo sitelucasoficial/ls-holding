@@ -10,7 +10,7 @@ import { bustCache } from "@/lib/imageUtils";
 const IncorporationsSection = () => {
   useRealtimeSubscription("companies", ["companies"]);
   const { data: companies, isLoading } = useCompanies();
-  
+
   // Filtramos apenas o que for de incorporações ou pegamos um padrão se não houver no banco
   const incorporation = companies?.find(c => c.badge_label === "INCORPORAÇÕES") || {
     name: "INCORPORAÇÕES",
