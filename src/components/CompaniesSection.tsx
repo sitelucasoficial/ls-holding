@@ -14,7 +14,8 @@ const defaultCompanies = [
 const CompaniesSection = () => {
   useRealtimeSubscription("companies", ["companies"]);
   const { data: companies, isLoading } = useCompanies();
-  const list = companies && companies.length > 0 ? companies : defaultCompanies;
+  const list = (companies && companies.length > 0 ? companies : defaultCompanies)
+    .filter((v: any) => v.badge_label !== "INCORPORAÇÕES");
 
   return (
     <section id="empresas" className="py-10 md:py-16 lg:py-24 bg-background">
