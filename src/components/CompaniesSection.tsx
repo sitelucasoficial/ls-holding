@@ -34,7 +34,7 @@ const CompaniesSection = () => {
               const bgUrl = company.logo_url ? bustCache(company.logo_url) : null;
               const hasVideo = !!company.video_url && company.video_url.trim() !== "";
               const showPlay = company.show_play_icon ?? true;
-              
+
               // Regra de Ouro:
               // Se ativou o play, o link da imagem = video. Se desativou o play, o link da imagem = site (button_url)
               const imageLink = (showPlay && hasVideo) ? company.video_url : company.button_url;
@@ -44,40 +44,31 @@ const CompaniesSection = () => {
                   key={company.name}
                   className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-10 items-center bg-white/5 rounded-2xl overflow-hidden border border-white/5 group"
                 >
-                  <div className="relative h-[200px] md:h-[250px] lg:h-full lg:min-h-[300px] block">
-                    {/* Link Base: A imagem inteira leva pro site (button_url) */}
-                    <a href={company.button_url || "#"} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-0 block cursor-pointer">
-                      {bgUrl ? (
-                        <img
-                          src={bgUrl}
-                          alt={company.name}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-slate-800 to-slate-900" />
-                      )}
-                      {/* Overlay escuro embutido na imagem */}
-                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors" />
-                    </a>
-
-                    {/* Ícone de Play: Link exclusivo para o Video, sobreposto (z-10) na exata posição central */}
-                    {(showPlay && hasVideo) && (
-                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-                        <a href={company.video_url} target="_blank" rel="noopener noreferrer" className="pointer-events-auto w-12 h-12 md:w-16 md:h-16 border-2 border-white/30 rounded-full flex items-center justify-center text-white backdrop-blur-sm hover:scale-110 hover:bg-white/10 transition-all cursor-pointer">
-                          <Play className="w-6 h-6 md:w-8 md:h-8 fill-white" />
-                        </a>
-                      </div>
+                  <a href={imageLink || "#"} target="_blank" rel="noopener noreferrer" className="relative h-[200px] md:h-[250px] lg:h-full lg:min-h-[300px] block cursor-pointer">
+                    {bgUrl ? (
+                      <img
+                        src={bgUrl}
+                        alt={company.name}
+                        className="absolute inset-0 w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900" />
                     )}
-
-                    {/* Selo (Badge) */}
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                      {(showPlay && hasVideo) && (
+                        <div className="w-12 h-12 md:w-16 md:h-16 border-2 border-white/30 rounded-full flex items-center justify-center text-white backdrop-blur-sm group-hover:scale-110 transition-transform">
+                          <Play className="w-6 h-6 md:w-8 md:h-8" />
+                        </div>
+                      )}
+                    </div>
                     <div
-                      className="absolute top-4 left-4 md:top-6 md:left-6 text-[10px] font-bold px-3 py-1 rounded text-white tracking-widest uppercase z-10 pointer-events-none"
+                      className="absolute top-4 left-4 md:top-6 md:left-6 text-[10px] font-bold px-3 py-1 rounded text-white tracking-widest uppercase"
                       style={{ backgroundColor: company.badge_color || "#16a34a" }}
                     >
                       {company.badge_label}
                     </div>
-                  </div>
+                  </a>
 
                   <div className="p-6 md:p-10 lg:p-16">
                     <h4 className="text-2xl md:text-3xl font-black text-white mb-4 md:mb-6">{company.name}</h4>
