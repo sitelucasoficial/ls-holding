@@ -1,0 +1,35 @@
+name: Deploy to FTP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Obter o código do GitHub
+      uses: actions/checkout@v4
+      
+    - name: Configurar Node.js (Ambiente de Build)
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        
+    - name: Instalar Dependências
+      run: npm install
+      
+    - name: Gerar a pasta dist (Build)
+      run: npm run build
+      
+    - name: Enviar pasta dist via FTP para o Servidor
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./dist/
+        server-dir: ./public_html/
