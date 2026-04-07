@@ -1,6 +1,7 @@
 import { Mail, Phone, MapPin, Camera, Diamond } from "lucide-react";
 import { useFooter } from "@/hooks/useCmsData";
 import { useRealtimeSubscription } from "@/hooks/useRealtimeSubscription";
+import { bustCache } from "@/lib/imageUtils";
 
 const FooterSection = () => {
   useRealtimeSubscription("footer", ["footer"]);
@@ -72,7 +73,7 @@ const FooterSection = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-4">
               {footer?.logo_url ? (
-                <img src={`${footer.logo_url}?t=${Date.now()}`} alt="Logo" className="h-8 object-contain" />
+                <img src={bustCache(footer.logo_url)} alt="Logo" className="h-8 object-contain" />
               ) : (
                 <div className="flex items-center gap-2">
                   <Diamond className="w-5 h-5 text-gold" />

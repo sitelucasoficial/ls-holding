@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Upload, X, Loader2 } from "lucide-react";
 import { uploadImage } from "@/hooks/useCmsData";
 import { toast } from "sonner";
@@ -15,6 +15,13 @@ const ImageUpload = ({ currentUrl, onUpload, folder = "general", label = "Imagem
   const [preview, setPreview] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // S2: Revoke blob URL on unmount to prevent memory leak
+  useEffect(() => {
+    return () => {
+      if (preview) URL.revokeObjectURL(preview);
+    };
+  }, [preview]);
+
   const handleFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -25,6 +32,14 @@ const ImageUpload = ({ currentUrl, onUpload, folder = "general", label = "Imagem
       return;
     }
 
+    const MAX_SIZE_MB = 5;
+    if (file.size > MAX_SIZE_MB * 1024 * 1024) {
+      toast.error(`Arquivo muito grande. Máximo: ${MAX_SIZE_MB}MB.`);
+      return;
+    }
+
+    // Revoke previous blob URL before creating a new one
+    if (preview) URL.revokeObjectURL(preview);
     setPreview(URL.createObjectURL(file));
     setUploading(true);
 

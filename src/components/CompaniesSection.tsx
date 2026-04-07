@@ -2,7 +2,7 @@ import { Play } from "lucide-react";
 import { useCompanies } from "@/hooks/useCmsData";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useRealtimeSubscription } from "@/hooks/useRealtimeSubscription";
-import { bustCache } from "@/lib/imageUtils";
+import { bustCache, handleImgError } from "@/lib/imageUtils";
 
 const defaultCompanies = [
   { name: "EMPREENDE BRAZIL", badge_label: "ECOSSISTEMA", badge_color: "#16a34a", description: "O maior ecossistema do empreendedor brasileiro.", logo_url: "", button_label: "VEJA MAIS", button_url: "https://empreendebrazil.com.br/" },
@@ -51,6 +51,7 @@ const CompaniesSection = () => {
                         alt={company.name}
                         className="absolute inset-0 w-full h-full object-cover"
                         loading="lazy"
+                        onError={handleImgError}
                       />
                     ) : (
                       <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900" />
