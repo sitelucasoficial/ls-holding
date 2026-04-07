@@ -55,7 +55,7 @@ const CompaniesSection = () => {
                     ) : (
                       <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900" />
                     )}
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                    <div className="absolute inset-0 flex items-center justify-center">
                       {(showPlay && hasVideo) && (
                         <div className="w-12 h-12 md:w-16 md:h-16 border-2 border-white/30 rounded-full flex items-center justify-center text-white backdrop-blur-sm group-hover:scale-110 transition-transform">
                           <Play className="w-6 h-6 md:w-8 md:h-8" />
